@@ -15,7 +15,14 @@ ActiveRecord::Schema[7.2].define(version: 2025_07_15_102943) do
   enable_extension "plpgsql"
 
   create_table "users", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "email"
+    t.string "provider", null: false
+    t.string "uid", null: false
+    t.string "google_image_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["provider", "uid"], name: "index_users_on_uid_and_provider", unique: true
   end
 end
