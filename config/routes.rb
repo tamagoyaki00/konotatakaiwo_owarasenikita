@@ -1,4 +1,17 @@
 Rails.application.routes.draw do
+   get "sessions/omniauth"
+   get "sessions/create"
+   get "sessions/failure"
+   # Google認証を開始するためのルーティング
+   get '/auth/:provider', to: 'sessions#omniauth'
+   # Googleからの認証コールバックを受け取るルーティング
+   match '/auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
+   # 認証失敗時のリダイレクト先
+   match '/auth/failure', to: redirect('/'), via: [:get, :post]
+   # ログアウトのルーティング（POSTメソッドでCSRF対策）
+   post 'logout', to: 'sessions#destroy', as: :logout
+
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
