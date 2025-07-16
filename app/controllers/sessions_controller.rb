@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    auth = request.env['omniauth.auth']
+    auth = request.env["omniauth.auth"]
     user = User.from_omniauth(auth)
 
     if user.persisted? # ユーザーがデータベースに保存されたか（新規作成 or 既存ユーザー）
