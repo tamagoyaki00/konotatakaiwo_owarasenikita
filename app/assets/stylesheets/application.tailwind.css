@@ -1,1 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Zen+Antique&display=swap');
 @import "tailwindcss";
+
+@theme {
+  /* フォント */
+  --font-zen: "Zen Antique", sans-serif;
+}
+
+@theme {
+ /*カラー*/
+ --color-cream: #e9d19bcc;
+ --color-black: #333333;
+ --color-orange: #ff6f00;
+ --color-perple: #6a00ff;
+}
+
+
+/* Google Sign-In Button Component */
+.gsi-material-button {
+  @apply select-none appearance-none bg-white border border-gray-700 rounded-full box-border text-gray-800 cursor-pointer font-sans text-sm h-10 tracking-wider outline-none overflow-hidden px-3 relative text-center transition-all duration-200 ease-in-out align-middle whitespace-nowrap w-auto max-w-lg min-w-min;
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, .30), 0 1px 3px 1px rgba(60, 64, 67, .15);
+}
+
+.gsi-material-button .gsi-material-button-icon {
+  @apply h-5 mr-3 min-w-5 w-5;
+}
+
+.gsi-material-button .gsi-material-button-content-wrapper {
+  @apply flex flex-row flex-nowrap h-full items-center justify-between relative w-full;
+}
+
+.gsi-material-button .gsi-material-button-contents {
+  @apply flex-grow font-sans font-medium overflow-hidden text-ellipsis align-top;
+}
+
+.gsi-material-button .gsi-material-button-state {
+  @apply absolute inset-0 opacity-0 transition-opacity duration-200 ease-in-out;
+}
+
+/* Disabled state */
+.gsi-material-button:disabled {
+  @apply cursor-default bg-gray-50 border-gray-200;
+}
+.gsi-material-button:disabled .gsi-material-button-contents,
+.gsi-material-button:disabled .gsi-material-button-icon {
+  opacity: 0.38;
+}
+
+
+.gsi-material-button:not(:disabled):hover {
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, .30), 0 1px 3px 1px rgba(60, 64, 67, .15);
+}
+
+.gsi-material-button:not(:disabled):hover .gsi-material-button-state {
+  @apply bg-gray-900 opacity-8;
+  opacity: 0.08;
+}
+
+.gsi-material-button:not(:disabled):active .gsi-material-button-state,
+.gsi-material-button:not(:disabled):focus .gsi-material-button-state {
+  @apply bg-gray-900 opacity-12;
+  opacity: 0.12;
+}
