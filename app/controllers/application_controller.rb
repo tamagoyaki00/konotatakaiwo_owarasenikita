@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  helper_method :current_user, :logged_in? # ビューでこれらのメソッドを使えるようにする
+  helper_method :current_user, :logged_in?
 
   private
 
@@ -9,15 +9,14 @@ class ApplicationController < ActionController::Base
   end
 
   def logged_in?
-    # current_userが存在すればtrueを返す
     !!current_user
   end
 
-  # ログインが必須なアクションのために、before_actionで使えるメソッド
+
   def require_login
     unless logged_in?
       flash[:alert] = "ログインしてください。"
-      redirect_to root_path # ログインしていない場合はルートにリダイレクト
+      redirect_to root_path
     end
   end
 end

@@ -1,0 +1,64 @@
+<div class="flex items-center justify-center mt-8">
+  <div class="bg-white shadow-md rounded-lg p-6 w-full md:w-3/4 lg:w-1/2 xl:w-1/3">
+    <%= form_with model: @question_form, local: true do |f| %>
+
+      <%# title %>
+      <div data-controller="textarea" class="relative mb-6">
+        <%= f.text_area :title,
+            data: { textarea_target: "input" },
+            class: "peer w-full h-20 p-3 pt-6 border border-black rounded focus:outline-none focus:border-orange resize-none transition-all duration-200",
+            placeholder: "" %>
+
+        <%= f.label :title, "問題のタイトル",
+            data: { textarea_target: "label" },
+            class: "absolute left-3 top-3 text-black transition-all duration-200 peer-focus:top-1 peer-focus:left-3 peer-focus:text-xs peer-focus:text-orange peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-not-placeholder-shown:top-1 peer-not-placeholder-shown:left-3 peer-not-placeholder-shown:text-xs peer-not-placeholder-shown:text-orange" %>
+
+        <div data-textarea-target="counter" class="absolute bottom-1 right-2 text-xs text-black">
+          <span data-textarea-target="currentLength">0</span>/<%= 50 %>
+        </div>
+
+        <% @question_form.errors.full_messages_for(:title).each do |message| %>
+          <p class="text-red-500 text-xs italic mt-1"><%= message %></p>
+        <% end %>
+      </div>
+
+
+      <%# Option 1 %>
+      <div class="relative mb-6" data-controller="textarea">
+        <%= f.text_area :option1_content,
+            data: { textarea_target: "input" },
+            class: "peer w-full  h-20 p-3 pt-6 border border-black rounded focus:outline-none focus:border-orange transition-all duration-200",
+            placeholder: "" %>
+        <%= f.label :option1_content, "選択肢1",
+            data: { textarea_target: "label" },
+            class: "absolute left-3 top-3 text-black transition-all duration-200 peer-focus:top-1 peer-focus:left-3 peer-focus:text-xs peer-focus:text-orange peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-not-placeholder-shown:top-1 peer-not-placeholder-shown:left-3 peer-not-placeholder-shown:text-xs peer-not-placeholder-shown:text-orange" %>
+        <div data-textarea-target="counter" class="absolute bottom-1 right-2 text-xs text-black">
+          <span data-textarea-target="currentLength">0</span>/<%= 50 %>
+        </div>
+        <% @question_form.errors.full_messages_for(:option1_content).each do |message| %>
+          <p class="text-red-500 text-xs italic mt-1"><%= message %></p>
+        <% end %>
+      </div>
+      <%# Option 2 %>
+      <div class="relative mb-6" data-controller="textarea">
+        <%= f.text_area :option2_content,
+            data: { textarea_target: "input" },
+            class: "peer w-full h-20 p-3 pt-6 border border-black rounded focus:outline-none focus:border-orange transition-all duration-200",
+            placeholder: "" %>
+        <%= f.label :option2_content, "選択肢2",
+            data: { textarea_target: "label" },
+            class: "absolute left-3 top-3 text-black transition-all duration-200 peer-focus:top-1 peer-focus:left-3 peer-focus:text-xs peer-focus:text-orange peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-not-placeholder-shown:top-1 peer-not-placeholder-shown:left-3 peer-not-placeholder-shown:text-xs peer-not-placeholder-shown:text-orange" %>
+        <div data-textarea-target="counter" class="absolute bottom-1 right-2 text-xs text-black">
+          <span data-textarea-target="currentLength">0</span>/<%= 50 %>
+        </div>
+        <% @question_form.errors.full_messages_for(:option2_content).each do |message| %>
+          <p class="text-red-500 text-xs italic mt-1"><%= message %></p>
+        <% end %>
+      </div>
+
+
+      <div class="mt-4 text-center">
+        <%= f.submit "問題を投稿", class: "bg-orange hover:bg-dark-orange text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline cursor-pointer" %>
+      </div>
+    <% end %>
+  </div>

@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   get "home/top"
   root "home#top"
 
-  ##Google認証に関するルーティング
+  # #Google認証に関するルーティング
   get "sessions/omniauth"
   get "sessions/create"
   get "sessions/failure"

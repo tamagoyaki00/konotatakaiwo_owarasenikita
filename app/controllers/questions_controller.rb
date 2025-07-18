@@ -1,0 +1,55 @@
+class QuestionsController < ApplicationController
+  before_action :require_login, only: [:new, :create, :edit, :update, :destroy]
+  before_action :set_question, only: %i[show edit update destroy]
+  def index
+    @questions = Question.all.include(:user).order(created_at: :desc)
+  end
+
+  def show
+    @options = @question.options
+  end
+
+  def new
+    @question_form = QuestionForm.new(params: {user_id: current_user.id})
+  end
+
+  def create
+    @question_form = QuestionForm.new(params: question_form_params.merge(user_id: current_user.id)) # user_idも渡す
+
+    if @question_form.save
+      redirect_to @question_form.question, notice: '質問と選択肢が正常に作成されました。'
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
+
+  def edit
+    @question_form = QuestionForm.new(question: @question)
+  end
+
+  def update
+    @question_form = QuestionForm.new(question: @question, params: question_form_params.merge(user_id: current_user.id))
+    if @qustion_form.save
+      notice = "更新しました"
+    else
+      notice = "更新に失敗しました"
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @question.destroy
+
+    redirect_to root_path
+  end
+
+  private
+
+  def question_form_params
+    params.require(:question).permit(:title, :option1_content, :option2_content)
+  end
+
+  def set_question
+    @question = Question.find_by!(params[:id])
+  end
+end
