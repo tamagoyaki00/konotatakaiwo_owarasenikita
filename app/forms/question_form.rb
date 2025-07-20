@@ -8,6 +8,7 @@ class QuestionForm
   validates :title, presence: true, length: { maximum: 50 }
   validates :option1_content, presence: true, length: { maximum: 50 }
   validates :option2_content, presence: true, length: { maximum: 50 }
+  validates :user_id, presence: true
 
   def initialize(question: nil, params: {})
     @question = question || Question.new # 既存のQuestionがなければ新規作成
