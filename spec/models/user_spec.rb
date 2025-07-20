@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   let(:user) { FactoryBot.create(:user) }
 
-  it 'バリデーションが有効であること'do
+  it 'バリデーションが有効であること' do
     expect(user).to be_valid
   end
 
