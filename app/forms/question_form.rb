@@ -79,7 +79,6 @@ class QuestionForm
     ActiveModel::Name.new(self.class, nil, "Question")
   end
 
-  # 保存されたQuestionオブジェクトへのアクセサ (リダイレクトなどで使うかも)
   def question
     @question
   end

@@ -1,6 +1,7 @@
 class Questions::OptionsController < ApplicationController
-  before_action :set_question only: %i[edit update destroy]
+  before_action :set_question, only: %i[edit update destroy]
   before_action :set_option
+  
   def new
     @question_form = QuestionForm.new(user_id: current_user.id)
   end

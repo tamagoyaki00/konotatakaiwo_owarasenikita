@@ -1,8 +1,8 @@
 class QuestionsController < ApplicationController
-  before_action :require_login, only: [:new, :create, :edit, :update, :destroy]
-  before_action :set_question, only: %i[show edit update destroy]
+  before_action :require_login, only: %i[ new create edit update destroy ]
+  before_action :set_question, only: %i[ show edit update destroy ]
   def index
-    @questions = Question.all.include(:user).order(created_at: :desc)
+    @questions = Question.all.includes(:user).order(created_at: :desc)
   end
 
   def show
@@ -10,14 +10,14 @@ class QuestionsController < ApplicationController
   end
 
   def new
-    @question_form = QuestionForm.new(params: {user_id: current_user.id})
+    @question_form = QuestionForm.new(params: { user_id: current_user.id })
   end
 
   def create
-    @question_form = QuestionForm.new(params: question_form_params.merge(user_id: current_user.id)) # user_idも渡す
+    @question_form = QuestionForm.new(params: question_form_params.merge(user_id: current_user.id))
 
     if @question_form.save
-      redirect_to @question_form.question, notice: '質問と選択肢が正常に作成されました。'
+      redirect_to @question_form.question, notice: "質問と選択肢が正常に作成されました。"
     else
       render :new, status: :unprocessable_entity
     end
@@ -28,7 +28,7 @@ class QuestionsController < ApplicationController
   end
 
   def update
-    @question_form = QuestionForm.new(question: @question, params: question_form_params.merge(user_id: current_user.id))
+    @question_form = QuestionForm.new(question: @question, params: question_form_params)
     if @qustion_form.save
       notice = "更新しました"
     else
@@ -50,6 +50,6 @@ class QuestionsController < ApplicationController
   end
 
   def set_question
-    @question = Question.find_by!(params[:id])
+    @question = Question.find(params[:id])
   end
 end
