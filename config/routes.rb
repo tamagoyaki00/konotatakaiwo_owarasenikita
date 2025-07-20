@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get "home/top"
   root "home#top"
 
+  # #Google認証に関するルーティング
   get "sessions/omniauth"
   get "sessions/create"
   get "sessions/failure"
@@ -13,6 +14,10 @@ Rails.application.routes.draw do
   match "/auth/failure", to: redirect("/"), via: [ :get, :post ]
   # ログアウトのルーティング（POSTメソッドでCSRF対策）
   post "logout", to: "sessions#destroy", as: :logout
+
+  resources :questions
+
+
 
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

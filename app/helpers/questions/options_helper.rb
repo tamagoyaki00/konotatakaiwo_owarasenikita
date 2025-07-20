@@ -1,0 +1,2 @@
+module Questions::OptionsHelper
+end

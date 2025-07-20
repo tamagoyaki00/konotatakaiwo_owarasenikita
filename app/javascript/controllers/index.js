@@ -4,5 +4,8 @@
 
 import { application } from "./application"
 
+import TextareaController from "./textarea_controller.js"
+application.register("textarea", TextareaController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
