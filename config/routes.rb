@@ -15,9 +15,7 @@ Rails.application.routes.draw do
   # ログアウトのルーティング（POSTメソッドでCSRF対策）
   post "logout", to: "sessions#destroy", as: :logout
 
-  resources :questions do
-    resources :options, only: %i[new create edit update destroy]
-  end
+  resources :questions
 
 
 
