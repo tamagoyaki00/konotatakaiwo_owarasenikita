@@ -1,17 +1,20 @@
 <div class="mt-20 flex items-center justify-center flex-col space-y-10">
+    <h2>プロフィール</h2>
     <%= image_tag @user.google_image_url, alt: @user.name, class: "w-20 rounded-full" %>
-  <p>ユーザー名: <%= @user.name %></p>
- <%= link_to "プロフィールを編集する", edit_user_path, class: "button" %>
- 
-  <h2 class="mt-15 text-2xl">あなたの投稿したお題</h2>
-  <% if @user.questions.any? %>
-    <div class="user-questions-list">
-      <% @user.questions.each do |question| %>
-        <%= render "questions/question", question: question %>
-      <% end %>
-    </div>
-  <% else %>
-    <p>まだお題を投稿していません。</p>
-    <%= link_to "新しいお題を投稿する", new_question_path, class: "button" %>
-  <% end %>
+
+    <%= turbo_frame_tag "user_profile_frame" do %>
+      <%= render "profile_display", user: @user %>
+    <% end %>
+
+    <h2 class="mt-15 text-2xl">あなたの投稿したお題</h2>
+    <% if @user.questions.any? %>
+        <div class="user-questions-list">
+        <% @user.questions.each do |question| %>
+            <%= render "questions/question", question: question %>
+        <% end %>
+        </div>
+    <% else %>
+        <p>まだお題を投稿していません。</p>
+        <%= link_to "新しいお題を投稿する", new_question_path, class: "button" %>
+    <% end %>
 </div>

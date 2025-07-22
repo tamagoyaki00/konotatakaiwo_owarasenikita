@@ -1,19 +1,9 @@
-<div id="<%= dom_id(question) %>" class="question-card">
+
   <div class="card-content">
-    <h3 class="question-title"><%= question.title %></h3>
+    <h2 class="question-title"><%= question.title %></h2>
   </div>
-  <div class="card-author">
-    <%# 作者アイコン %>
-    <div class="author-icon">
-      <%# question.author が User モデルなどのインスタンスだと仮定します %>
-      <% if question.author.google_image_url.present? %>
-        <img src="<%= question.author.google_image_url %>" alt="<%= question.author.name %>">
-      <% else %>
-        <%# デフォルトのアイコン（例: Gravatar、またはアプリ内のデフォルト画像） %>
-        <img src="/assets/default_avatar.png" alt="<%= question.author.name %>">
-      <% end %>
+    <div class="user-icon">
+      <img src="<%= question.user.google_image_url %>" alt="<%= question.user.name %>" class="w-10 rounded-full">
     </div>
-    <%# 作者名 %>
-    <span class="author-name"><%= question.author.name %></span>
-  </div>
+    <span class="user-name"><%= question.user.name %></span>
 </div>

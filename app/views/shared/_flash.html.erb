@@ -1,0 +1,10 @@
+<% flash.each do |type, message| %>
+  <div class="fixed top-20 right-4 z-50 p-4 rounded-lg shadow-lg max-w-sm <%= flash_class_for(type) %> transform transition-transform duration-500 ease-in-out translate-x-full opacity-0 pointer-events-auto"
+       data-controller="flash-message"
+       data-action="animationend->flash-message#remove"
+       data-flash-message-target="container">
+    <div class="flex items-center">
+      <span class="ml-2 flex-grow"><%= message %></span>
+    </div>
+  </div>
+<% end %>

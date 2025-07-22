@@ -1,0 +1,4 @@
+<div class="space-y-10 flex items-center justify-center flex-col">
+    <p>ユーザー名: <%= user.name %></p>
+    <%= link_to "名前を編集する", edit_user_path(user), class: "button", data: { turbo_frame: "user_profile_frame" } %>
+</div>
