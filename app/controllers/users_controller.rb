@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      flash.now[:notice] = "名前を更新しました"
+      flash.now[:notice] = "名前を変更しました"
     else
       render :edit, status: :unprocessable_entity
     end
