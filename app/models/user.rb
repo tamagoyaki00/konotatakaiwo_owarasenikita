@@ -2,7 +2,7 @@ class User < ApplicationRecord
   has_many :questions
 
   validates :name, presence: true
-  validates :email, presence: true, uniqueness: true
+  validates :email, presence: true
   validates :uid, uniqueness: { scope: :provider }
 
   def self.from_omniauth(auth)
