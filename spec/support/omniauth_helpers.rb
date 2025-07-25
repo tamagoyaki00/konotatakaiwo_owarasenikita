@@ -20,7 +20,6 @@ module OmniauthHelpers
   end
 
   def reset_omniauth_config
-    OmniAuth.config.test_mode = false
     OmniAuth.config.mock_auth[:google_oauth2] = nil
   end
 end

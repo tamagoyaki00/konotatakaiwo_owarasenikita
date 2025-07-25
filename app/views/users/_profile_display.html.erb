@@ -1,20 +1,10 @@
-  <% if params[:edit] == 'true' %>
-    <%= form_with model: user, data: { turbo_frame: "user_profile_frame" } do |f| %>
-      <div class="field flex flex-col items-center">
-        <%= f.label :name, "変更したいユーザー名を入力", class: "mb-2" %>
-        <%= f.text_field :name, class: "border border-orange p-2 rounded-md w-48" %>
-      </div>
-
-      <div class="flex space-x-5 mt-5">
-        <button type="submit" class="button">更新する</button>
-        <%= link_to 'キャンセル', user_path(user), data: { turbo_frame: "user_profile_frame" }, class: "cancel-button" %>
-      </div>
-    <% end %>
-  <% else %>
-    <div class="text-center space-y-5">
-      <h3><%= user.name %></h3>
-      <%= link_to 'ユーザー名を編集', user_path(user, edit: true),
-                  data: { turbo_frame: "user_profile_frame" },
-                  class: "button" %>
-    </div>
-  <% end %>
+<% if params[:edit] == 'true' %>
+  <%= render "users/form", user: user %>
+<% else %>
+  <div class="text-center space-y-5">
+    <h3><%= user.name %></h3>
+    <%= link_to 'ユーザー名を編集', user_path(user, edit: true),
+                data: { turbo_frame: "user_profile_frame" },
+                class: "button" %>
+  </div>
+<% end %>
