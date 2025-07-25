@@ -14,6 +14,11 @@ begin
 rescue ActiveRecord::PendingMigrationError => e
   abort e.to_s.strip
 end
+Capybara.configure do |config|
+  config.server_port = nil # ポートを自動選択させる (重要)
+  # サーバーをPumaに設定。これは正しい構文です
+  config.server = :puma
+end
 
 RSpec.configure do |config|
   config.fixture_paths = [
@@ -27,18 +32,23 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   
   config.include FactoryBot::Syntax::Methods
-  config.include LoginHelper, type: :system
+  config.include OmniauthHelpers, type: :system
+  config.include LoginHelpers, type: :system
 
   config.before(:each, type: :system) do
     driven_by :remote_chrome
     Capybara.server_host = IPSocket.getaddress(Socket.gethostname)
-    Capybara.server_port = 4444
-    Capybara.app_host = "http://#{Capybara.server_host}:#{Capybara.server_port}"
+    OmniAuth.config.full_host = Capybara.app_host
+    Capybara.app_host = "http://#{Capybara.server_host}"
+
     Capybara.ignore_hidden_elements = false
     OmniAuth.config.test_mode = true
+
   end
+ 
 
   config.after(:each, type: :system) do
-    OmniAuth.config.mock_auth[:google_oauth2] = nil
+    reset_omniauth_config
   end
+
 end
