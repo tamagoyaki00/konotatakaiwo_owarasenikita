@@ -1,32 +1,24 @@
 class SessionsController < ApplicationController
-  def omniauth
-    redirect_to "/auth/#{params[:provider]}"
-  end
-
+      skip_before_action :require_login, only: [ :create, :failure ]
   def create
-    auth = request.env["omniauth.auth"]
-    user = User.from_omniauth(auth)
+    begin
+      auth = request.env["omniauth.auth"]
+      user = User.find_or_create_from_omniauth(auth)
 
-    if user.persisted? # ユーザーがデータベースに保存されたか（新規作成 or 既存ユーザー）
-      session[:user_id] = user.id
-      flash[:notice] = "Googleログインに成功しました。"
-      redirect_to root_path
-    else
-      flash[:alert] = "ユーザーの作成またはログインに失敗しました。"
-      redirect_to root_path
+      if user.persisted?
+        session[:user_id] = user.id
+        redirect_to root_path, notice: "ログインしました。"
+      else
+
+        redirect_to root_path, alert: "ログインに失敗しました。ユーザー情報の保存に問題がありました。"
+      end
+    rescue => e
+
+      redirect_to root_path, alert: "ログイン中に予期せぬエラーが発生しました。"
     end
-  rescue => e
-    redirect_to root_path, alert: "認証処理中にエラーが発生しました。"
   end
-
 
   def failure
-    flash[:alert] = "認証に失敗しました。理由: #{params[:message].humanize}"
-    redirect_to root_path
-  end
-
-  def destroy
-    session[:user_id] = nil
-    redirect_to root_path, notice: "ログアウトしました。"
+    redirect_to root_path, alert: "認証に失敗しました: #{params[:message]}"
   end
 end

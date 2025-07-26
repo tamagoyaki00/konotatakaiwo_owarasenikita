@@ -5,11 +5,21 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true
   validates :uid, uniqueness: { scope: :provider }
 
-  def self.from_omniauth(auth)
-    find_or_create_by(provider: auth.provider, uid: auth.uid) do |user|
-      user.email = auth.info.email
-      user.name = auth.info.name
-      user.google_image_url = auth.info.image
+ def self.find_or_create_from_omniauth(auth)
+    # 既存ユーザーを検索
+    user = where(uid: auth.uid, provider: auth.provider).first
+
+    # ユーザーが見つからない場合は作成
+    unless user
+      user = create(
+        uid: auth.uid,
+        provider: auth.provider,
+        name: auth.info.name,
+        email: auth.info.email,
+        google_image_url: auth.info.image
+      )
     end
+
+    user
   end
 end

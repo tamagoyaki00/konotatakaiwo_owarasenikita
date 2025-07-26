@@ -12,8 +12,22 @@
  --color-black: #333333;
  --color-orange: #ff6f00;
  --color-dark-orange: #e66400;
+ --color-blue: #3498db;
+ --color-dark-blue: #2c7cb9;
+ --color-dark-moderate-blue: #325675;
+ --color-naby: #0c2948;
+ --color-sky: #7793ab;
+ --color-white: #f8f8f8;
+
 }
 
+.button {
+  @apply bg-blue hover:bg-dark-blue text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:ring focus:ring-blue-300/75 cursor-pointer;
+}
+
+.cancel-button {
+  @apply bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:ring focus:ring-blue-300/75 cursor-pointer;
+}
 
 /* Google Sign-In Button Component */
 .gsi-material-button {

@@ -1,0 +1,10 @@
+<% if params[:edit] == 'true' %>
+  <%= render "users/form", user: user %>
+<% else %>
+  <div class="text-center space-y-5">
+    <h3><%= user.name %></h3>
+    <%= link_to 'ユーザー名を編集', user_path(user, edit: true),
+                data: { turbo_frame: "user_profile_frame" },
+                class: "button" %>
+  </div>
+<% end %>

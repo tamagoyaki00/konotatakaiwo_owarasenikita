@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-  before_action :require_login, only: %i[ new create edit update destroy ]
+  skip_before_action :require_login, only: %i[ index show ]
   before_action :set_question, only: %i[ show edit update destroy ]
   def index
     @questions = Question.all.includes(:user).order(created_at: :desc)
@@ -17,7 +17,7 @@ class QuestionsController < ApplicationController
     @question_form = QuestionForm.new(params: question_form_params.merge(user_id: current_user.id))
 
     if @question_form.save
-      redirect_to @question_form.question, notice: "質問と選択肢が正常に作成されました。"
+      redirect_to @question_form.question, notice: "お題が作成されました"
     else
       render :new, status: :unprocessable_entity
     end
