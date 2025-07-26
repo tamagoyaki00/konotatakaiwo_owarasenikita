@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user
+  before_action :correct_user, only: %i[ show edit update ]
 
   def show
   end
@@ -13,7 +14,7 @@ class UsersController < ApplicationController
     else
       respond_to do |format|
       # 通常のHTMLリクエストの場合 (例: JS無効時や直接フォーム送信された場合)
-      format.html { render :edit, status: :unprocessable_entity } 
+      format.html { render :edit, status: :unprocessable_entity }
 
       # Turbo Stream リクエストの場合 (フォーム送信がTurbo経由の場合)
       format.turbo_stream do
@@ -32,6 +33,13 @@ class UsersController < ApplicationController
 
   def set_user
     @user = current_user
+  end
+
+  def correct_user
+    unless @user == current_user
+      flash[:alert] = "権限がありません"
+      redirect_to root_path
+    end
   end
 
   def user_params

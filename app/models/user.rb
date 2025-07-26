@@ -2,11 +2,10 @@ class User < ApplicationRecord
   has_many :questions
 
   validates :name, presence: true
-  validates :email, presence: true
+  validates :email, presence: true, uniqueness: true
   validates :uid, uniqueness: { scope: :provider }
 
  def self.find_or_create_from_omniauth(auth)
-    
     # 既存ユーザーを検索
     user = where(uid: auth.uid, provider: auth.provider).first
 
@@ -20,7 +19,7 @@ class User < ApplicationRecord
         google_image_url: auth.info.image
       )
     end
-    
+
     user
   end
 end

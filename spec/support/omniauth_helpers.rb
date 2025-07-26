@@ -1,6 +1,4 @@
 module OmniauthHelpers
-
-
   def mock_google_oauth_for(user)
     OmniAuth.config.test_mode = true
     OmniAuth.config.logger = Rails.logger if Rails.env.test?
@@ -23,6 +21,3 @@ module OmniauthHelpers
     OmniAuth.config.mock_auth[:google_oauth2] = nil
   end
 end
-
-
-

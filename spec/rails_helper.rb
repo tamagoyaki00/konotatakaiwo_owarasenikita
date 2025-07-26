@@ -15,7 +15,7 @@ rescue ActiveRecord::PendingMigrationError => e
   abort e.to_s.strip
 end
 Capybara.configure do |config|
-  config.server_port = nil 
+  config.server_port = nil
   config.server = :puma
 end
 
@@ -29,7 +29,7 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
 
   config.filter_rails_from_backtrace!
-  
+
   config.include FactoryBot::Syntax::Methods
   config.include OmniauthHelpers, type: :system
   config.include LoginHelpers, type: :system
@@ -44,10 +44,9 @@ RSpec.configure do |config|
     Capybara.ignore_hidden_elements = false
     OmniAuth.config.test_mode = true
   end
- 
+
 
   config.after(:each, type: :system) do
     reset_omniauth_config
   end
-
 end

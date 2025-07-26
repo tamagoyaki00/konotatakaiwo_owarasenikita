@@ -1,5 +1,4 @@
 module LoginHelpers
-
   def login(user)
     mock_google_oauth_for(user)
     visit root_path
