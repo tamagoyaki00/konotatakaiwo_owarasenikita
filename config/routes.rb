@@ -1,17 +1,10 @@
 Rails.application.routes.draw do
-  devise_for :users
   get "home/top"
   root "home#top"
 
+  devise_for :users, controllers: {omniauth_callbacks: 'users/omniauth_callbacks'}
 
-  # Googleからの認証コールバックを受け取るルーティング
-  match "/auth/:provider/callback", to: "sessions#create", via: [ :get, :post ]
-  # 認証失敗時のリダイレクト先
-  match "/auth/failure", to: redirect("/"), via: [ :get, :post ]
-  # ログアウトのルーティング（POSTメソッドでCSRF対策）
-  post "logout", to: "sessions#destroy", as: :logout
 
-  resources :users, only: %i[show edit update]
 
   resources :questions
 

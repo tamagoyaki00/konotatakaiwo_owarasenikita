@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user
-  before_action :correct_user, only: %i[ show edit update ]
+  before_action :correct_user, only: %i[ show edit update destroy ]
 
   def show
   end
