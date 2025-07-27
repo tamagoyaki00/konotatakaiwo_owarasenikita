@@ -2,9 +2,9 @@ Rails.application.routes.draw do
   get "home/top"
   root "home#top"
 
-  devise_for :users, controllers: {omniauth_callbacks: 'users/omniauth_callbacks'},
-  skip: [:sessions, :registrations, :passwords]
-  delete 'logout', to: 'sessions#destroy', as: :logout
+  devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" },
+  skip: [ :sessions, :registrations, :passwords ]
+  delete "logout", to: "sessions#destroy", as: :logout
 
   resources :users, only: %i[ show edit update ]
 

@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe "Users", type: :system do
-
   describe 'ログイン前' do
     let!(:user) { create(:user) }
     it 'マイページに直接アクセスするとrootページにリダイレクトされる' do
