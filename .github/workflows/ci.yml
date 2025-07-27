@@ -61,12 +61,12 @@ jobs:
         image: selenium/standalone-chrome:latest
         ports:
           - 4444:4444
-        options: >-
-          --health-cmd "curl --fail http://localhost:4444/wd/hub || exit 1"
-          --health-interval 10s
-          --health-timeout 10s
-          --health-retries 15
-          --shm-size=2g
+        # options: >-
+        #   --health-cmd "curl --fail http://localhost:4444/wd/hub || exit 1"
+        #   --health-interval 10s
+        #   --health-timeout 10s
+        #   --health-retries 15
+        #   --shm-size=2g
 
     steps:
       - name: Install packages
