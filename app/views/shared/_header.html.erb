@@ -14,7 +14,7 @@
 
       <% if current_user %>
         <%= link_to "マイページ", user_path(current_user),class: "text-black hover:underline hover:text-orange hover:decoration-orange" %>
-        <%= link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete }, class: "text-black hover:underline hover:text-orange hover:decoration-orange" %>
+        <%= link_to 'ログアウト', logout_path, data: { turbo_method: :delete }, class: "text-black hover:underline hover:text-orange hover:decoration-orange" %>
       <% else %>
         <%= link_to user_google_oauth2_omniauth_authorize_path, class: "gsi-material-button",data: { turbo: false, method: :post }, id: "google-sign-in-button" do %>
           <div class="gsi-material-button-state"></div>

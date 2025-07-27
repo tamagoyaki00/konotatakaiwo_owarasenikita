@@ -69,3 +69,4 @@ gem "omniauth-google-oauth2"
 gem "omniauth-rails_csrf_protection"
 
 gem 'devise'
+gem 'devise-i18n'
