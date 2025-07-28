@@ -7,14 +7,14 @@
     <% end %>
 
     <h2 class="mt-15 text-2xl">あなたの投稿したお題</h2>
-    <% if @user.questions.any? %>
-        <div class="user-questions-list">
-        <% @user.questions.each do |question| %>
-            <%= render "questions/question", question: question %>
+        <% if @user.questions.any? %>
+            <div class="user-questions-list">
+            <% @user.questions.each do |question| %>
+                <%= render "questions/question", question: question %>
+            <% end %>
+            </div>
+        <% else %>
+            <p>まだお題を投稿していません。</p>
+            <%= link_to "新しいお題を投稿する", new_question_path, class: "button" %>
         <% end %>
-        </div>
-    <% else %>
-        <p>まだお題を投稿していません。</p>
-        <%= link_to "新しいお題を投稿する", new_question_path, class: "button" %>
-    <% end %>
 </div>
