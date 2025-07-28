@@ -1,7 +1,5 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable,:database_authenticatable,:registerable, :validatable
-  devise :rememberable,
+  devise :database_authenticatable, :rememberable,
          :omniauthable, omniauth_providers: [ :google_oauth2 ]
 
   has_many :questions
@@ -19,7 +17,7 @@ def self.from_omniauth(auth)
     user.uid = auth.uid
     user.google_image_url = auth.info.image
   end
-  end
+end
 
   # パスワード認証を無効にした時、パスワードなしで更新できるようにするため
   def update_without_current_password(params, *options)
