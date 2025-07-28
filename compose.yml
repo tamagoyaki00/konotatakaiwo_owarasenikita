@@ -37,7 +37,7 @@ services:
   chrome:
     image: selenium/standalone-chrome
     ports:
-      - "4444:4444"
+      - "4445:4444"
     shm_size: 2gb
     environment:
       - TZ=Asia/Tokyo

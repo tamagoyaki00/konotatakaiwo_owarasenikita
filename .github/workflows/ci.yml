@@ -60,7 +60,7 @@ jobs:
       chrome:
         image: selenium/standalone-chrome:latest
         ports:
-          - 4444:4444
+          - 4445:4444
         options:  --shm-size=2g
         #   --health-cmd "curl --fail http://localhost:4444/wd/hub || exit 1"
         #   --health-interval 10s
