@@ -2,6 +2,7 @@ name: CI
 
 on:
   pull_request:
+    branches: [ develop, main ]
   push:
     branches: [ main ]
 
@@ -56,9 +57,20 @@ jobs:
       #     - 6379:6379
       #   options: --health-cmd "redis-cli ping" --health-interval 10s --health-timeout 5s --health-retries 5
 
+      chrome:
+        image: selenium/standalone-chrome:latest
+        ports:
+          - 4445:4444
+        options:  --shm-size=2g
+        #   --health-cmd "curl --fail http://localhost:4444/wd/hub || exit 1"
+        #   --health-interval 10s
+        #   --health-timeout 10s
+        #   --health-retries 15
+
+
     steps:
       - name: Install packages
-        run: sudo apt-get update && sudo apt-get install --no-install-recommends -y google-chrome-stable curl libjemalloc2 libvips postgresql-client
+        run: sudo apt-get update && sudo apt-get install --no-install-recommends -y curl libjemalloc2 libvips postgresql-client
 
       - name: Checkout code
         uses: actions/checkout@v4
@@ -69,6 +81,22 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20.19.4'
+          cache: 'yarn'
+
+      - name: Install JavaScript dependencies
+        run: yarn install
+
+      - name: Build assets
+        run: |
+          yarn build
+          yarn build:css
+        env:
+          NODE_ENV: production
+
       - name: Set up database for tests
         env:
           RAILS_ENV: test
@@ -77,11 +105,20 @@ jobs:
           bin/rails db:create
           bin/rails db:schema:load
 
+      - name: Set up Selenium URL for Capybara
+        run: |
+          echo "SELENIUM_DRIVER_URL=http://localhost:4445/wd/hub" >> $GITHUB_ENV
+          echo "CAPYBARA_SERVER_HOST=0.0.0.0" >> $GITHUB_ENV
+          echo "CAPYBARA_SERVER_PORT=3000" >> $GITHUB_ENV
+
       - name: Run tests
         env:
           RAILS_ENV: test
           DATABASE_URL: postgres://postgres:postgres@localhost:5432
-          # REDIS_URL: redis://localhost:6379/0
+          SELENIUM_HOST: localhost
+          SELENIUM_PORT: 4445
+          CAPYBARA_SERVER_HOST: 0.0.0.0
+          CAPYBARA_SERVER_PORT: 3000
         run: bundle exec rspec
 
       - name: Keep screenshots from failed system tests
@@ -91,3 +128,5 @@ jobs:
           name: screenshots
           path: ${{ github.workspace }}/tmp/screenshots
           if-no-files-found: ignore
+
+
