@@ -91,7 +91,7 @@ jobs:
 
       - name: Set up Selenium URL for Capybara
         run: |
-          echo "SELENIUM_DRIVER_URL=http://chrome:4444/wd/hub" >> $GITHUB_ENV
+          echo "SELENIUM_DRIVER_URL=http://localhost:4445/wd/hub" >> $GITHUB_ENV
           echo "CAPYBARA_SERVER_HOST=0.0.0.0" >> $GITHUB_ENV
           echo "CAPYBARA_SERVER_PORT=3000" >> $GITHUB_ENV
 
@@ -99,8 +99,8 @@ jobs:
         env:
           RAILS_ENV: test
           DATABASE_URL: postgres://postgres:postgres@localhost:5432
-          SELENIUM_HOST: chrome
-          SELENIUM_PORT: 4444
+          SELENIUM_HOST: localhost
+          SELENIUM_PORT: 4445
           CAPYBARA_SERVER_HOST: 0.0.0.0
           CAPYBARA_SERVER_PORT: 3000
         run: bundle exec rspec
