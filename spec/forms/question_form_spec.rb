@@ -42,8 +42,8 @@ RSpec.describe QuestionForm, type: :form do
         expect(form.errors[:title]).to be_present
       end
 
-      it 'titleが50文字を超える場合、無効であること' do
-        long_title = 'a' * 51
+      it 'title29文字を超える場合、無効であること' do
+        long_title = 'a' * 30
         form = QuestionForm.new(params: valid_attributes.merge(title: long_title)) # valid_attributesを正しい引数に修正
         expect(form).to be_invalid
         expect(form.errors[:title]).to be_present
@@ -63,8 +63,8 @@ RSpec.describe QuestionForm, type: :form do
         expect(form.errors[:option1_content]).to be_present
       end
 
-      it 'option1_contentが50文字を超える場合、無効であること' do
-        long_content = 'a' * 51
+      it 'option1_contentが29文字を超える場合、無効であること' do
+        long_content = 'a' * 30
         form = QuestionForm.new(params: valid_attributes.merge(option1_content: long_content))
         expect(form).to be_invalid
         expect(form.errors[:option1_content]).to be_present
@@ -83,8 +83,8 @@ RSpec.describe QuestionForm, type: :form do
         expect(form.errors[:option2_content]).to be_present
       end
 
-      it 'option2_contentが50文字を超える場合、無効であること' do
-        long_content = 'a' * 51
+      it 'option2_contentが29文字を超える場合、無効であること' do
+        long_content = 'a' * 30
         form = QuestionForm.new(params: valid_attributes.merge(option2_content: long_content))
         expect(form).to be_invalid
         expect(form.errors[:option2_content]).to be_present

@@ -5,9 +5,9 @@ class QuestionForm
   attr_accessor :title, :user_id
   attr_accessor :option1_content, :option2_content
 
-  validates :title, presence: true, length: { maximum: 50 }
-  validates :option1_content, presence: true, length: { maximum: 50 }
-  validates :option2_content, presence: true, length: { maximum: 50 }
+  validates :title, presence: true, length: { maximum: 29 }
+  validates :option1_content, presence: true, length: { maximum: 29 }
+  validates :option2_content, presence: true, length: { maximum: 29 }
   validates :user_id, presence: true
 
   def initialize(question: nil, params: {})

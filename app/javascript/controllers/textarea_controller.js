@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
   static targets = ["input", "label", "counter", "currentLength"]
-  static values = { maxLength: { type: Number, default: 50 } }
+  static values = { maxLength: { type: Number, default: 29 } }
 
   connect() {
     this.updateCounter()
