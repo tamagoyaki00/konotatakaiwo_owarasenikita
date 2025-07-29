@@ -6,7 +6,6 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    @options = @question.options
   end
 
   def new

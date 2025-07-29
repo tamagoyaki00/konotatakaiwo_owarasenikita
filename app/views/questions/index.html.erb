@@ -1,5 +1,9 @@
-<div class="m-10 h-auto">
-  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4">
-    <%= render @questions %>
+<% if @questions.present? %>
+  <div class="m-10 h-auto">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4">
+      <%= render @questions %>
+    </div>
   </div>
-</div>
+<% else %>
+  <p>お題はありません</p>
+<% end %>
