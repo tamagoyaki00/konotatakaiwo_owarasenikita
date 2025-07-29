@@ -1,10 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe "Questions index page", type: :system do
-
   describe '一覧ページの表示' do
     context '問題が存在する場合' do
-
         let!(:user)  { create(:user) }
         let!(:question1) { create(:question, title: '究極の選択1', user: user) }
         let!(:question2) { create(:question, title: '究極の選択2', user: user) }
@@ -36,7 +34,6 @@ RSpec.describe "Questions index page", type: :system do
             expect(page).to have_content 'お題はありません'
             expect(page).not_to have_selector('card-animated')
         end
-
     end
   end
 end

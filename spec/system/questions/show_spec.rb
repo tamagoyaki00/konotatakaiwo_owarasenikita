@@ -18,6 +18,5 @@ RSpec.describe "Questions show page", type: :system do
         expect(page).to have_selector("img[src='#{question.user.google_image_url}']")
       end
     end
-
   end
 end
