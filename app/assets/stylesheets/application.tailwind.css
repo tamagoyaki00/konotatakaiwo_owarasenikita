@@ -29,6 +29,14 @@
   @apply bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:ring focus:ring-blue-300/75 cursor-pointer;
 }
 
+.card-animated {
+  @apply transition-all duration-300 ease-in-out cursor-pointer;
+}
+
+.card-animated:hover {
+  @apply shadow-xl -translate-y-0.5;
+}
+
 /* Google Sign-In Button Component */
 .gsi-material-button {
   @apply select-none appearance-none bg-white border border-gray-700 rounded-full box-border text-gray-800 cursor-pointer font-sans text-sm h-10 tracking-wider outline-none overflow-hidden px-3 relative text-center transition-all duration-200 ease-in-out align-middle whitespace-nowrap w-auto max-w-lg min-w-min;
