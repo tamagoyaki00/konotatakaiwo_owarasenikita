@@ -5,6 +5,7 @@ ja:
         title: タイトル
         option1_content: 選択肢1
         option2_content: 選択肢2
+        user_id: ''
   activerecord:
     models:
       question: 問題

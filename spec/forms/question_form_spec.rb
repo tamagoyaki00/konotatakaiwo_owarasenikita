@@ -12,7 +12,7 @@ RSpec.describe QuestionForm, type: :form do
     }
   end
 
-  # --- バリデーションのテスト ---
+
   describe 'バリデーション' do
     context '有効な属性の場合' do
       it 'フォームオブジェクトが有効であること' do
@@ -25,7 +25,7 @@ RSpec.describe QuestionForm, type: :form do
       it 'user_idが存在しない場合、無効であること' do
         form = QuestionForm.new(params: valid_attributes.merge(user_id: nil))
         expect(form).to be_invalid
-        expect(form.errors[:user_id]).to be_present
+        expect(form.errors.full_messages).to include('ログインしてください')
       end
     end
 
@@ -33,20 +33,20 @@ RSpec.describe QuestionForm, type: :form do
       it 'titleが存在しない場合、無効であること' do
         form = QuestionForm.new(params: valid_attributes.merge(title: nil))
         expect(form).to be_invalid
-        expect(form.errors[:title]).to be_present
+        expect(form.errors.full_messages).to include('タイトルを入力してください')
       end
 
       it 'titleが空白の場合、無効であること' do
         form = QuestionForm.new(params: valid_attributes.merge(title: ''))
         expect(form).to be_invalid
-        expect(form.errors[:title]).to be_present
+        expect(form.errors.full_messages).to include('タイトルを入力してください')
       end
 
       it 'title29文字を超える場合、無効であること' do
         long_title = 'a' * 30
         form = QuestionForm.new(params: valid_attributes.merge(title: long_title)) # valid_attributesを正しい引数に修正
         expect(form).to be_invalid
-        expect(form.errors[:title]).to be_present
+        expect(form.errors.full_messages).to include('タイトルは29文字以内で入力してください')
       end
     end
 
@@ -60,34 +60,34 @@ RSpec.describe QuestionForm, type: :form do
       it 'option1_contentが空白の場合、無効であること' do
         form = QuestionForm.new(params: valid_attributes.merge(option1_content: ''))
         expect(form).to be_invalid
-        expect(form.errors[:option1_content]).to be_present
+        expect(form.errors.full_messages).to include('選択肢1を入力してください')
       end
 
       it 'option1_contentが29文字を超える場合、無効であること' do
         long_content = 'a' * 30
         form = QuestionForm.new(params: valid_attributes.merge(option1_content: long_content))
         expect(form).to be_invalid
-        expect(form.errors[:option1_content]).to be_present
+        expect(form.errors.full_messages).to include('選択肢1は29文字以内で入力してください')
       end
 
       # option2_content のバリデーション
       it 'option2_contentが存在しない場合、無効であること' do
         form = QuestionForm.new(params: valid_attributes.merge(option2_content: nil))
         expect(form).to be_invalid
-        expect(form.errors[:option2_content]).to be_present
+        expect(form.errors.full_messages).to include('選択肢2を入力してください')
       end
 
       it 'option2_contentが空白の場合、無効であること' do
         form = QuestionForm.new(params: valid_attributes.merge(option2_content: ''))
         expect(form).to be_invalid
-        expect(form.errors[:option2_content]).to be_present
+        expect(form.errors.full_messages).to include('選択肢2を入力してください')
       end
 
       it 'option2_contentが29文字を超える場合、無効であること' do
         long_content = 'a' * 30
         form = QuestionForm.new(params: valid_attributes.merge(option2_content: long_content))
         expect(form).to be_invalid
-        expect(form.errors[:option2_content]).to be_present
+        expect(form.errors.full_messages).to include('選択肢2は29文字以内で入力してください')
       end
     end
   end
@@ -138,7 +138,7 @@ RSpec.describe QuestionForm, type: :form do
       it 'user_idがない場合、フォームオブジェクトにuser_idのエラーが設定されること' do
         form = QuestionForm.new(params: invalid_attributes_no_user_id)
         form.save
-        expect(form.errors[:user_id]).to be_present
+        expect(form.errors.full_messages).to include('ログインしてください')
       end
 
       let(:invalid_attributes_no_title) { valid_attributes.merge(title: nil) }
@@ -156,7 +156,7 @@ RSpec.describe QuestionForm, type: :form do
       it 'titleがない場合、フォームオブジェクトにtitleのエラーが設定されること' do
         form = QuestionForm.new(params: invalid_attributes_no_title)
         form.save
-        expect(form.errors[:title]).to be_present
+        expect(form.errors.full_messages).to include('タイトルを入力してください')
       end
 
       let(:invalid_attributes_blank_option1_content) { valid_attributes.merge(option1_content: '') }
@@ -174,7 +174,7 @@ RSpec.describe QuestionForm, type: :form do
       it 'option1_contentが空白の場合、フォームオブジェクトにoption1_contentのエラーが設定されること' do
         form = QuestionForm.new(params: invalid_attributes_blank_option1_content)
         form.save
-        expect(form.errors[:option1_content]).to be_present
+        expect(form.errors.full_messages).to include('選択肢1を入力してください')
       end
 
       let(:invalid_attributes_blank_option2_content) { valid_attributes.merge(option2_content: '') }
@@ -192,7 +192,7 @@ RSpec.describe QuestionForm, type: :form do
       it 'option2_contentが空白の場合、フォームオブジェクトにoption2_contentのエラーが設定されること' do
         form = QuestionForm.new(params: invalid_attributes_blank_option2_content)
         form.save
-        expect(form.errors[:option2_content]).to be_present
+        expect(form.errors.full_messages).to include('選択肢2を入力してください')
       end
     end
   end
