@@ -7,7 +7,7 @@ class QuestionForm
   validates :title, presence: true, length: { maximum: 29 }
   validates :option1_content, presence: true, length: { maximum: 29 }
   validates :option2_content, presence: true, length: { maximum: 29 }
-  validates :user_id, presence: { message:"ログインしてください" }
+  validates :user_id, presence: { message: "ログインしてください" }
 
   def initialize(question: nil, params: {})
     @question = question || Question.new # 既存のQuestionがなければ新規作成
@@ -82,6 +82,4 @@ class QuestionForm
   def question
     @question
   end
-
-
 end
