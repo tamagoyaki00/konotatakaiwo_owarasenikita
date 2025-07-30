@@ -6,3 +6,15 @@ ja:
     mypage: マイページ
     logout: ログアウト
     login: ログイン
+  users:
+    form:
+      edit_name_label: 変更したいユーザー名を入力
+      update: 更新する
+      cancel: キャンセル
+    profile_display:
+      edit_name: ユーザー名を編集
+    show:
+      profile: プロフィール
+      your_questions: あなたの投稿したお題
+      no_questions: まだお題を投稿していません。
+      post_new_question: 新しいお題を投稿する
