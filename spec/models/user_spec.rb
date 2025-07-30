@@ -11,7 +11,7 @@ RSpec.describe User, type: :model do
     it 'nameが存在しない場合、無効であること' do
       user.name = nil
       expect(user).to be_invalid
-      expect(user.errors[:name]).to be_present
+      expect(user.errors.full_messages).to include('名前を入力してください')
     end
   end
 
@@ -19,13 +19,13 @@ RSpec.describe User, type: :model do
     it 'emailが存在しない場合、無効であること' do
       user.email = nil
       expect(user).to be_invalid
-      expect(user.errors[:email]).to be_present
+      expect(user.errors.full_messages).to include('メールアドレスを入力してください')
     end
 
     it 'emailはユニークであること' do
       duplicate_user = user.dup
       expect(duplicate_user).to be_invalid
-      expect(duplicate_user.errors[:email]).to be_present
+      expect(duplicate_user.errors.full_messages).to include('メールアドレスはすでに存在します')
     end
   end
 
@@ -35,7 +35,7 @@ RSpec.describe User, type: :model do
     it '同じuidとproviderの組み合わせの場合、無効であること' do
       duplicate_auth_user = auth_user_one.dup
       expect(duplicate_auth_user).to be_invalid
-      expect(duplicate_auth_user.errors[:uid]).to be_present
+       expect(duplicate_auth_user.errors.full_messages).to include('Uidはすでに存在します')
     end
 
     it 'uidが同じでもproviderが異なる場合、有効であること' do

@@ -7,14 +7,9 @@ ja:
         option2_content: 選択肢2
   activerecord:
     models:
-      user: ユーザー
       question: 問題
       option: 選択肢
     attributes:
-      user:
-        name: 名前
-        email: メールアドレス
-        google_image_url: プロフィール画像
       question:
         title: タイトル
       option:

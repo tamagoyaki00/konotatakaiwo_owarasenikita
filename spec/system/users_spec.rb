@@ -58,7 +58,7 @@ RSpec.describe "Users", type: :system do
         fill_in 'user_name', with: ''
         click_button '更新する'
 
-        expect(page).to have_content("名前 を入力してください")
+        expect(page).to have_content("名前を入力してください")
         expect(current_path).to eq user_path(user)
       end
     end
