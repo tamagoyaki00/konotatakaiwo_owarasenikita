@@ -70,3 +70,5 @@ gem "omniauth-rails_csrf_protection"
 
 gem "devise"
 gem "devise-i18n"
+
+gem 'rails-i18n', '~> 7.0.0'

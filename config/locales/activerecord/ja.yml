@@ -1,0 +1,15 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+      question: 問題
+      option: 選択肢
+    attributes:
+      user:
+        name: なまえ
+        email: メールアドレス
+        google_image_url: プロフィール画像
+      question:
+        title: タイトル
+      option:
+        content: 選択肢の内容
