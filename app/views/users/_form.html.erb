@@ -11,7 +11,7 @@
   </div>
 
   <div class="flex space-x-5 mt-5">
-    <button type="submit" class="button"><%= t('.update')%></button>
+    <%= f.submit class: "button" %>
     <%= link_to t('.cancel'), user_path(user), data: { turbo_frame: "user_profile_frame" }, class: "cancel-button" %>
   </div>
 <% end %>

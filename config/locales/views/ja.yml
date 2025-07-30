@@ -1,4 +1,8 @@
 ja:
+  helpers:
+    submit:
+      update: 更新する
+      create: 投稿
   header:
     title: この戦いを終わらせに来た！！～究極の二択～
     create_question: お題を作成する
@@ -9,7 +13,6 @@ ja:
   users:
     form:
       edit_name_label: 変更したいユーザー名を入力
-      update: 更新する
       cancel: キャンセル
     profile_display:
       edit_name: ユーザー名を編集
@@ -18,3 +21,17 @@ ja:
       your_questions: あなたの投稿したお題
       no_questions: まだお題を投稿していません。
       post_new_question: 新しいお題を投稿する
+  questions:
+    form:
+      title: お題のタイトル
+      option1_content: 選択肢1
+      option2_content: 選択肢2
+    question:
+      creater: 作成者
+    edit:
+      title: お題を編集
+    index:
+      no_questions: お題はありません
+    show:
+      choose: どちらか選択してください
+      creater: 作成者

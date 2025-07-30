@@ -3,7 +3,7 @@
     <h2 class="text-xl font-bold"><%= question.title %></h2>
     <div class="flex items-center space-x-2">
       <img src="<%= question.user.google_image_url %>" alt="<%= question.user.name %>" class="w-8 h-8 rounded-full">
-      <span class="font-medium"><%= question.user.name %>(作成者)</span>
+      <span class="font-medium"><%= question.user.name %>(<%= t('.creater')%>)</span>
     </div>
     <div class="flex items-center space-x-2">
       <i class="fa-regular fa-face-laugh-beam"></i>

@@ -9,7 +9,7 @@
             class: "peer w-full h-20 p-3 pt-6 border border-black rounded focus:outline-none focus:border-orange resize-none transition-all duration-200",
             placeholder: "" %>
 
-        <%= f.label :title, "問題のタイトル",
+        <%= f.label :title, t('.title'),
             data: { textarea_target: "label" },
             class: "absolute left-3 top-3 text-black transition-all duration-200 peer-focus:top-1 peer-focus:left-3 peer-focus:text-xs peer-focus:text-orange peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-not-placeholder-shown:top-1 peer-not-placeholder-shown:left-3 peer-not-placeholder-shown:text-xs peer-not-placeholder-shown:text-orange" %>
 
@@ -29,7 +29,7 @@
             data: { textarea_target: "input" },
             class: "peer w-full  h-20 p-3 pt-6 border border-black rounded focus:outline-none focus:border-orange transition-all duration-200",
             placeholder: "" %>
-        <%= f.label :option1_content, "選択肢1",
+        <%= f.label :option1_content, t('.option1_content'),
             data: { textarea_target: "label" },
             class: "absolute left-3 top-3 text-black transition-all duration-200 peer-focus:top-1 peer-focus:left-3 peer-focus:text-xs peer-focus:text-orange peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-not-placeholder-shown:top-1 peer-not-placeholder-shown:left-3 peer-not-placeholder-shown:text-xs peer-not-placeholder-shown:text-orange" %>
         <div data-textarea-target="counter" class="absolute bottom-1 right-2 text-xs text-black">
@@ -45,7 +45,7 @@
             data: { textarea_target: "input" },
             class: "peer w-full h-20 p-3 pt-6 border border-black rounded focus:outline-none focus:border-orange transition-all duration-200",
             placeholder: "" %>
-        <%= f.label :option2_content, "選択肢2",
+        <%= f.label :option2_content, t('.option1_content'),
             data: { textarea_target: "label" },
             class: "absolute left-3 top-3 text-black transition-all duration-200 peer-focus:top-1 peer-focus:left-3 peer-focus:text-xs peer-focus:text-orange peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-not-placeholder-shown:top-1 peer-not-placeholder-shown:left-3 peer-not-placeholder-shown:text-xs peer-not-placeholder-shown:text-orange" %>
         <div data-textarea-target="counter" class="absolute bottom-1 right-2 text-xs text-black">
@@ -58,7 +58,7 @@
 
 
       <div class="mt-4 text-center">
-        <%= f.submit "問題を投稿", class: "button" %>
+        <%= f.submit class: "button" %>
       </div>
     <% end %>
   </div>
