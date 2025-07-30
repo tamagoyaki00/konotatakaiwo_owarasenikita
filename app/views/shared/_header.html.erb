@@ -2,19 +2,19 @@
 
   <nav class="flex items-center justify-between w-full">
   <div>
-    <h1><span class="text-black text-xl font-zen">この戦いを終わらせに来た！！～究極の二択～</span></h1>
+    <h1><span class="text-black text-xl font-zen"><%= t('header.title') %></span></h1>
   </div>
 
     <div class="flex items-center space-x-8">
       <div class="flex space-x-8">
-        <%= link_to "お題を作成する", new_question_path, class: "text-black hover:underline hover:text-orange hover:decoration-orange" %>
-        <%= link_to "究極の二択問題一覧", questions_path, class: "text-black hover:underline hover:text-orange hover:decoration-orange" %>
+        <%= link_to t('header.create_question'), new_question_path, class: "text-black hover:underline hover:text-orange hover:decoration-orange" %>
+        <%= link_to t('header.question_list'), questions_path, class: "text-black hover:underline hover:text-orange hover:decoration-orange" %>
       </div>
 
 
       <% if current_user %>
-        <%= link_to "マイページ", user_path(current_user),class: "text-black hover:underline hover:text-orange hover:decoration-orange" %>
-        <%= link_to 'ログアウト', logout_path, data: { turbo_method: :delete }, class: "text-black hover:underline hover:text-orange hover:decoration-orange" %>
+        <%= link_to t('header.mypage'), user_path(current_user),class: "text-black hover:underline hover:text-orange hover:decoration-orange" %>
+        <%= link_to t('header.logout'), logout_path, data: { turbo_method: :delete }, class: "text-black hover:underline hover:text-orange hover:decoration-orange" %>
       <% else %>
         <%= link_to user_google_oauth2_omniauth_authorize_path, class: "gsi-material-button",data: { turbo: false, method: :post }, id: "google-sign-in-button" do %>
           <div class="gsi-material-button-state"></div>
@@ -28,8 +28,8 @@
                 <path fill="none" d="M0 0h48v48H0z"></path>
               </svg>
             </div>
-            <span class="gsi-material-button-contents">ログイン</span>
-            <span style="display: none;">ログイン</span>
+            <span class="gsi-material-button-contents"><%= t('header.login') %></span>
+            <span style="display: none;"><%= t('header.login') %></span>
           </div>
         <% end %>
       <% end %>

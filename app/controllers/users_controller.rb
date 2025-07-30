@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user
+  before_action :set_user, only: %i[ show edit update]
   before_action :correct_user, only: %i[ show edit update]
 
   def show
@@ -32,7 +32,7 @@ class UsersController < ApplicationController
   private
 
   def set_user
-    @user = current_user
+    @user = User.find(params[:id])
   end
 
   def correct_user

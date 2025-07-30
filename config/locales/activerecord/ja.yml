@@ -1,0 +1,17 @@
+ja:
+  activemodel:
+    attributes:
+      question_form:
+        title: タイトル
+        option1_content: 選択肢1
+        option2_content: 選択肢2
+        user_id: ''
+  activerecord:
+    models:
+      question: 問題
+      option: 選択肢
+    attributes:
+      question:
+        title: タイトル
+      option:
+        content: 選択肢の内容

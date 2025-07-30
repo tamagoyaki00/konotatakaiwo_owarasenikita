@@ -1,14 +1,13 @@
 class QuestionForm
   include ActiveModel::Model
 
-
   attr_accessor :title, :user_id
   attr_accessor :option1_content, :option2_content
 
   validates :title, presence: true, length: { maximum: 29 }
   validates :option1_content, presence: true, length: { maximum: 29 }
   validates :option2_content, presence: true, length: { maximum: 29 }
-  validates :user_id, presence: true
+  validates :user_id, presence: { message: "ログインしてください" }
 
   def initialize(question: nil, params: {})
     @question = question || Question.new # 既存のQuestionがなければ新規作成

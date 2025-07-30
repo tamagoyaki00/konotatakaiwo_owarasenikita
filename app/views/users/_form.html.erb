@@ -1,17 +1,13 @@
 <%= form_with model: user, data: { turbo_frame: "user_profile_frame" } do |f| %>
-
-        <% user.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-
+  <%= render 'shared/error_messages', object: f.object %>
 
   <div class="field flex flex-col items-center">
-    <%= f.label :name, "変更したいユーザー名を入力", class: "mb-2" %>
+    <%= f.label :name, t('.edit_name_label'), class: "mb-2" %>
     <%= f.text_field :name, class: "border border-orange p-2 rounded-md w-48" %>
   </div>
 
   <div class="flex space-x-5 mt-5">
-    <button type="submit" class="button">更新する</button>
-    <%= link_to 'キャンセル', user_path(user), data: { turbo_frame: "user_profile_frame" }, class: "cancel-button" %>
+    <%= f.submit class: "button" %>
+    <%= link_to t('.cancel'), user_path(user), data: { turbo_frame: "user_profile_frame" }, class: "cancel-button" %>
   </div>
 <% end %>

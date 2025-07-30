@@ -58,25 +58,25 @@ RSpec.describe "Users", type: :system do
         fill_in 'user_name', with: ''
         click_button '更新する'
 
-        expect(page).to have_content("名前 を入力してください")
+        expect(page).to have_content("名前を入力してください")
         expect(current_path).to eq user_path(user)
       end
     end
 
 
-    # describe '他人のプロフィール' do
-    #   before { login(user) }
-    #   let(:other_user) { create(:user) }
+    describe '他人のプロフィール' do
+      before { login(user) }
+      let(:other_user) { create(:user) }
 
-    #   it '他人のマイページにアクセスすると権限エラーになる' do
-    #     visit user_path(other_user)
-    #     expect(page).to have_content('権限がありません')
-    #   end
+      it '他人のマイページにアクセスすると権限エラーになる' do
+        visit user_path(other_user)
+        expect(page).to have_content('権限がありません')
+      end
 
-    #   it '他人の名前編集ページにアクセスすると権限エラーになる' do
-    #     visit edit_user_path(other_user)
-    #     expect(page).to have_content('権限がありません')
-    #   end
-    # end
+      it '他人の名前編集ページにアクセスすると権限エラーになる' do
+        visit edit_user_path(other_user)
+        expect(page).to have_content('権限がありません')
+      end
+    end
   end
 end
