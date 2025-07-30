@@ -1,9 +1,5 @@
 <%= form_with model: user, data: { turbo_frame: "user_profile_frame" } do |f| %>
-
-        <% user.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-
+  <%= render 'shared/error_messages', object: f.object %>
 
   <div class="field flex flex-col items-center">
     <%= f.label :name, t('.edit_name_label'), class: "mb-2" %>

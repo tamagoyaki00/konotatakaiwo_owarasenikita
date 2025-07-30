@@ -1,7 +1,6 @@
 class QuestionForm
   include ActiveModel::Model
 
-
   attr_accessor :title, :user_id
   attr_accessor :option1_content, :option2_content
 

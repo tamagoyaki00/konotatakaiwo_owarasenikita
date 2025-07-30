@@ -1,4 +1,10 @@
 ja:
+  activemodel:
+    attributes:
+      question_form:
+        title: タイトル
+        option1_content: 選択肢1
+        option2_content: 選択肢2
   activerecord:
     models:
       user: ユーザー
@@ -6,7 +12,7 @@ ja:
       option: 選択肢
     attributes:
       user:
-        name: なまえ
+        name: 名前
         email: メールアドレス
         google_image_url: プロフィール画像
       question:
