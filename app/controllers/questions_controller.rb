@@ -9,11 +9,11 @@ class QuestionsController < ApplicationController
   end
 
   def new
-    @question_form = QuestionForm.new(params: { user_id: current_user.id })
+    @question_form = QuestionForm.new(attributes: { user_id: current_user.id })
   end
 
   def create
-    @question_form = QuestionForm.new(params: question_form_params.merge(user_id: current_user.id))
+    @question_form = QuestionForm.new(attributes: question_form_params.merge(user_id: current_user.id))
 
     if @question_form.save
       redirect_to @question_form.question, notice: "お題が作成されました"
