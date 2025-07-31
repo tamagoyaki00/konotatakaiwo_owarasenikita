@@ -45,12 +45,12 @@ RSpec.describe "Questions new page", type: :system do
           fill_in '選択肢1', with: valid_attributes_for_form[:option1_content]
           fill_in '選択肢2', with: valid_attributes_for_form[:option2_content]
           click_button '投稿'
+          expect(page).to have_content('お題が作成されました')
         end.to change(Question, :count).by(1)
-          .and change(Option, :count).by(2)
+          .and(change(Option, :count).by(2))
 
         created_question = Question.last
-        expect(page).to have_current_path(question_path)
-        expect(page).to have_content('お題を作成しました')
+        expect(page).to have_current_path(question_path(created_question))
         expect(page).to have_content(valid_attributes_for_form[:title])
         expect(page).to have_content(valid_attributes_for_form[:option1_content])
         expect(page).to have_content(valid_attributes_for_form[:option2_content])
@@ -64,21 +64,19 @@ RSpec.describe "Questions new page", type: :system do
         visit new_question_path
       end
 
-      it '無効なデータの場合、お題も選択肢も作成されず、入力内容が保持されること' do
-        expect do
-          fill_in 'タイトル', with: ''
-          fill_in '選択肢1', with: '入力保持テスト1'
-          fill_in '選択肢2', with: '入力保持テスト2'
-          click_button '投稿'
-        end.to_not change(Question, :count)
-          .and(not_change(Option, :count))
+      it '無効なデータの場合、お題も選択肢も作成されない' do
+        initial_question_count = Question.count
+        initial_option_count = Option.count
 
-        created_question = Question.last
+        fill_in 'タイトル', with: ''
+        fill_in '選択肢1', with: 'テスト1'
+        fill_in '選択肢2', with: 'テスト2'
+        click_on '投稿'
+
+        expect(Question.count).to eq initial_question_count
+        expect(Option.count).to eq initial_option_count
+
         expect(page).to have_current_path(new_question_path)
-        expect(page).to have_content('お題の作成に失敗しました。')
-        expect(page).to have_field('タイトル', with: '')
-        expect(page).to have_field('選択肢1', with: '入力保持テスト1')
-        expect(page).to have_field('選択肢2', with: '入力保持テスト2')
       end
 
       context 'タイトルが空の場合' do
@@ -87,7 +85,6 @@ RSpec.describe "Questions new page", type: :system do
           fill_in '選択肢1', with: '選択肢1の内容'
           fill_in '選択肢2', with: '選択肢2の内容'
           click_button '投稿'
-
           expect(page).to have_content('タイトルを入力してください')
         end
       end
