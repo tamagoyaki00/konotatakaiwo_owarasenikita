@@ -32,7 +32,7 @@ RSpec.describe "Questions index page", type: :system do
 
         it 'お題はありませんという文字が表示されること' do
             expect(page).to have_content 'お題はありません'
-            expect(page).not_to have_selector('card-animated')
+            expect(page).not_to have_selector('.card-animated')
         end
     end
   end

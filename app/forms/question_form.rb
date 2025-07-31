@@ -8,23 +8,15 @@ class QuestionForm
   validates :option1_content, presence: true, length: { maximum: 29 }
   validates :option2_content, presence: true, length: { maximum: 29 }
   validates :user_id, presence: { message: "ログインしてください" }
+  validate :options_must_be_unique
 
-  def initialize(question: nil, params: {})
-    @question = question || Question.new # 既存のQuestionがなければ新規作成
+  def initialize(question: nil, attributes: {})
+    @question = question || Question.new
 
-    if params.present? # フォームからのパラメータがある場合
-      self.title = params[:title]
-      self.user_id = params[:user_id]
-      self.option1_content = params[:option1_content]
-      self.option2_content = params[:option2_content]
-    elsif @question.persisted? # 既存のQuestionを編集する場合（パラメータがない場合）
-      self.title = @question.title
-      self.user_id = @question.user_id
-      # 既存の選択肢の内容をフォームオブジェクトの属性に設定
-      @question.options.each_with_index do |option, i|
-        # option1_content, option2_content にセット
-        send("option#{i+1}_content=", option.content)
-      end
+    if attributes.present?
+      assign_attributes(attributes)
+    elsif @question.persisted?
+      load_from_question
     end
   end
 
@@ -32,30 +24,24 @@ class QuestionForm
     return false unless valid?
 
     ActiveRecord::Base.transaction do
-      @question.title = title
-      @question.user_id = user_id
-      @question.save!
-
-      # 既存の選択肢があれば更新、なければ新規作成
-      option1 = @question.options[0] || @question.options.build
-      option1.content = option1_content
-      option1.save!
-
-      option2 = @question.options[1] || @question.options.build
-      option2.content = option2_content
-      option2.save!
+      save_question!
+      save_options!
     end
     true
   rescue ActiveRecord::RecordInvalid => e # バリデーションエラーなどで例外が発生した場合
+    e.record.errors.each do |error|
+      errors.add(error.attribute, error.message)
+    end
     Rails.logger.error "QuestionForm save failed: #{e.message}"
     false
   rescue => e # その他の予期せぬエラー
     Rails.logger.error "QuestionForm save encountered an unexpected error: #{e.message}"
+    errors.add(:base, "お題の保存中に予期せぬエラーが発生しました。")
     false
   end
 
   # フォームヘルパーがモデルのように振る舞えるようにするための定義
-  # form_with model: @question_form, url: questions_path のように書くため
+  # form_with model: @question_form, url: questions_path が正しく動作するために必要
 
   # レコードのキーを返す (通常はid)
   def to_key
@@ -81,5 +67,35 @@ class QuestionForm
 
   def question
     @question
+  end
+
+  private
+
+  def load_from_question
+    self.title = @question.title
+    self.user_id = @question.user_id
+    @question.options.each_with_index do |option, i|
+      send("option#{i+1}_content=", option.content)
+    end
+  end
+
+
+  def save_question!
+    @question.title = title
+    @question.user_id = user_id
+    @question.save!
+  end
+
+  def save_options!
+    @question.options.destroy_all if @question.persisted?
+
+    @question.options.create!(content: option1_content)
+    @question.options.create!(content: option2_content)
+  end
+
+  def options_must_be_unique
+    if option1_content.present? && option2_content.present? && option1_content == option2_content
+      errors.add(:base, "選択肢は重複しないようにしてください")
+    end
   end
 end
