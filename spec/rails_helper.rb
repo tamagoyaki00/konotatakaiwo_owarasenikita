@@ -6,7 +6,6 @@ require 'rspec/rails'
 require 'capybara/rails'
 require 'capybara/rspec'
 
-# supportファイルの読み込み（この位置が重要）
 Dir[Rails.root.join('spec', 'support', '**', '*.rb')].sort.each { |f| require f }
 
 begin

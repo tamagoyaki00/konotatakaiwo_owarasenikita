@@ -3,6 +3,7 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers: [ :google_oauth2 ]
 
   has_many :questions
+  has_many :votes
 
   validates :name, presence: true
   validates :email, presence: true, uniqueness: true
