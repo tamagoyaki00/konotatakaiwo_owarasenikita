@@ -7,8 +7,8 @@ RSpec.describe QuestionForm, type: :form do
     {
       title: 'テストタイトル',
       user_id: user.id,
-      option1_content: '選択肢１の内容',
-      option2_content: '選択肢２の内容'
+      option1_content: '選択肢1の内容',
+      option2_content: '選択肢2の内容'
     }
   end
 
