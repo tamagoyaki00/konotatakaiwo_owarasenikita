@@ -1,0 +1,4 @@
+<%= turbo_stream.replace "voting-section" do %>
+  <%= render 'questions/options_with_results', question: @question, current_user: current_user %>
+<% end %>
+<%= turbo_stream_flash %>

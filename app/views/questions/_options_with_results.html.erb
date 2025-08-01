@@ -1,0 +1,58 @@
+  <% user_voted_on_this_question = current_user&.voted_on_question?(question) %>
+
+  <% if user_voted_on_this_question %>
+    <%# --- 投票済みのユーザー向け表示（結果を表示） --- %>
+    <% question.options.each do |option| %>
+      <% user_voted_on_this_option = current_user&.voted_for?(option) %>
+      <% percentage = option.percentage_of_question_votes %>
+
+      <div class="bg-gray-100 rounded-lg p-4 shadow-sm">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-lg font-semibold text-gray-800"><%= option.content %></span>
+          <span class="text-sm text-gray-600"><%= option.votes_count %>票 (<%= number_to_percentage(percentage, precision: 0) %>)</span>
+        </div>
+
+        <%# プログレスバーの表示 %>
+        <div class="w-full bg-gray-200 rounded-full h-4 mb-3 overflow-hidden">
+          <div class="bg-blue-500 h-full rounded-full transition-all duration-700 ease-out" style="width: <%= percentage %>%;"></div>
+        </div>
+
+        <%# 投票ボタンの表示ロジック %>
+        <% if user_voted_on_this_option %>
+          <%= button_to vote_path(current_user.votes.find_by(option: option)), method: :delete,
+                        class: "w-full py-2 px-4 rounded-lg bg-red-500 text-white font-semibold text-sm hover:bg-red-600 transition duration-200",
+                        form: { data: { turbo_confirm: "投票をやり直しますか？" }} do %>
+            <span class="flex-grow text-center"><%= option.content %></span>
+            <span class="text-sm ml-2">（投票済み - 取り消す）</span>
+          <% end %>
+        <% else %>
+          <button class="w-full py-2 px-4 rounded-lg bg-gray-300 text-gray-600 font-semibold text-sm cursor-not-allowed" disabled>
+            このお題には投票済みです
+          </button>
+        <% end %>
+      </div>
+    <% end %>
+  <% else %>
+    <%# --- 未投票のユーザー向け表示（結果を非表示） --- %>
+    <% question.options.each do |option| %>
+      <div class="bg-gray-100 rounded-lg p-4 shadow-sm">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-lg font-semibold text-gray-800"><%= option.content %></span>
+        </div>
+        
+        <%# 未投票なのでプログレスバーは非表示 %>
+        <div class="w-full bg-gray-200 rounded-full h-4 mb-3"></div>
+
+        <%# 投票ボタンの表示ロジック %>
+        <% if current_user %>
+          <%= button_to question_votes_path(question, vote: { option_id: option.id }), method: :post,
+                        class: "w-full py-2 px-4 rounded-lg bg-blue-500 text-white font-semibold text-sm hover:bg-blue-600 transition duration-200" do %>
+            <%= option.content %>
+          <% end %>
+        <% else %>
+          <p class="text-center text-sm text-gray-500">投票するには<a href="<%= root_path %>" class="text-blue-500 hover:underline">ログイン</a>してください。</p>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
