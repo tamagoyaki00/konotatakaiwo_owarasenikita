@@ -19,6 +19,10 @@
  --color-sky: #7793ab;
  --color-white: #f8f8f8;
 
+ /*プログレスバー */
+  --color-progress-gradient: linear-gradient(to right, #ff7e5f, #66b6ff, #5ad85a);
+  --transition-duration-1500: 1500ms;
+
 }
 
 .button {
