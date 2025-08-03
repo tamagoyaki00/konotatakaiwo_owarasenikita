@@ -4,14 +4,14 @@ RSpec.describe Vote, type: :model do
   let(:user) { FactoryBot.create(:user) }
   let(:question) { create(:question) }
   let(:option1) { create(:option, question: question) }
-  let(:option2) { create(:option, question: question) }    
+  let(:option2) { create(:option, question: question) }
 
   describe 'バリデーション' do
     it 'use_idとoption_idがあれば有効であること' do
       vote = build(:vote, user: user, option: option1)
       expect(vote).to be_valid
     end
-  
+
 
     it 'user_idがないと無効であること' do
       vote = build(:vote, user: nil, option: option1)
@@ -38,7 +38,5 @@ RSpec.describe Vote, type: :model do
       expect(second_vote).to be_invalid
       expect(second_vote.errors.full_messages).to include('このお題は既に解答済みです')
     end
-
-
   end
 end

@@ -23,15 +23,15 @@
           <% if user_voted_on_this_option %>
             <div class="flex justify-center">
               <%= button_to vote_path(current_user.votes.find_by(option: option)), method: :delete,
-                                class: "py-2 px-4 rounded-lg bg-red-500 text-white font-semibold text-sm hover:bg-red-600 transition duration-200",
-                                data: { turbo_frame: "voting-section", turbo_confirm: "投票をやり直しますか？" } do %>
-                <span class="text-sm">投票をやり直す</span>
+                            class: "py-2 px-4 rounded-lg bg-red-500 text-white font-semibold text-sm hover:bg-red-600 transition duration-200",
+                            data: { turbo_frame: "voting-section", turbo_confirm: "投票をやり直しますか？" } do %>
+                <span class="text-sm"><%= t('.re-vote')%></span>
               <% end %>
             </div>
           <% else %>
             <div class="flex justify-center">
               <button class="py-2 px-4 rounded-lg bg-gray-300 text-gray-600 font-semibold text-sm cursor-not-allowed" disabled>
-                このお題には投票済みです
+                <%= t('.already_voted')%>
               </button>
             </div>
           <% end %>
@@ -39,20 +39,28 @@
       <% end %>
     </div>
   <% else %>
-    <%# --- 未投票のユーザー向け表示（結果を非表示） --- %>
-    <div class="space-y-6">
-      <% question.options.each do |option| %>
-          <%# 投票ボタンの表示ロジック %>
-          <% if current_user %>
-            <%= button_to question_votes_path(question, vote: { option_id: option.id }), method: :post,
-                            class: "w-full h-12 py-2 px-6 rounded-lg bg-orange text-white font-semibold text-lg hover:bg-dark-orange transition duration-200",
-                            data: { turbo_frame: "voting-section"} do %>
-              <%= option.content %>
-            <% end %>
-          <% else %>
-            <p class="text-center text-sm">投票するには<a href="<%= new_user_session_path %>" class="text-blue hover:underline">ログイン</a>してください。</p>
+    <%# --- 未投票のユーザー向け表示 --- %>
+    <%# ここに`t('.choose')`を追加しました %>
+    <p class="text-lg mb-2"><%= t('.choose')%></p>
+    <% if current_user %>
+      <div class="space-y-6">
+        <% question.options.each do |option| %>
+          <%= button_to question_votes_path(question, vote: { option_id: option.id }), method: :post,
+                        class: "w-full h-12 py-2 px-6 rounded-lg bg-orange text-white font-semibold text-lg hover:bg-dark-orange transition duration-200",
+                        data: { turbo_frame: "voting-section"} do %>
+            <%= option.content %>
           <% end %>
-      <% end %>
-    </div>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="space-y-6">
+        <p class="text-center text-lg text-red-500 text-bold"><i class="fa-regular fa-circle-user mr-2"></i><%= t('.vote_login_prompt')%></p>
+        <% question.options.each do |option| %>
+          <div class="w-full h-12 py-2 px-6 rounded-lg bg-orange text-white font-semibold text-lg">
+            <%= option.content %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
   <% end %>
 </div>
