@@ -15,3 +15,15 @@ ja:
         title: タイトル
       option:
         content: 選択肢の内容
+      vote:
+        user_id: ''
+        option_id: 選択肢
+    errors:
+      models:
+        vote:
+          attributes:
+            user_id:
+              blank: "ログインしてください"
+            option_id:
+              blank: "を選んでください"
+
