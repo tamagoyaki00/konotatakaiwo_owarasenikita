@@ -1,0 +1,4 @@
+<%= turbo_stream.replace "question_#{@question.id}" do %>
+  <%= render "questions/show", question: @question_form.question %>
+<% end %>
+<%= turbo_stream_flash %>

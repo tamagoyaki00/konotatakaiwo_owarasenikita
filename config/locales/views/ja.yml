@@ -35,6 +35,8 @@ ja:
     show:
       creater: 作成者
       return_index: お題一覧に戻る
+      edit: 編集
+      destroy: 削除
     options_with_results:
       choose: どちらか選択してください
       vote_login_prompt: "投票するにはログインしてください"

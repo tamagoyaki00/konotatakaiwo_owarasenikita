@@ -27,19 +27,21 @@ class QuestionsController < ApplicationController
   end
 
   def update
-    @question_form = QuestionForm.new(question: @question, params: question_form_params)
-    if @qustion_form.save
-      notice = "更新しました"
-    else
-      notice = "更新に失敗しました"
-      render :edit, status: :unprocessable_entity
-    end
+    @question_form = QuestionForm.new(question: @question, attributes: question_form_params.merge(user_id: current_user.id))
+      if @question_form.save
+        flash.now[:notice] = "お題が更新されました"
+      else
+        flash.now[:alert] = "お題の更新に失敗しました"
+        render turbo_stream: turbo_stream.replace(
+          "question_#{@question.id}",
+          partial: "questions/form",
+          locals: { question_form: @question_form }), status: :unprocessable_entity
+      end
   end
 
   def destroy
     @question.destroy
-
-    redirect_to root_path
+    redirect_to questions_path, notice: "お題が削除されました"
   end
 
   private
