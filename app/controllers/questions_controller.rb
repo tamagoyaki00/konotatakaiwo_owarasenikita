@@ -1,6 +1,8 @@
 class QuestionsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[ index show ]
   before_action :set_question, only: %i[ show edit update destroy ]
+  before_action :check_user, only: %i[ edit update destroy ]
+
   def index
     @questions = Question.all.includes(:user).order(created_at: :desc)
   end
@@ -41,7 +43,7 @@ class QuestionsController < ApplicationController
 
   def destroy
     @question.destroy
-    redirect_to questions_path, notice: "お題が削除されました"
+    redirect_to questions_path, notice: "お題が削除されました", status: :see_other
   end
 
   private
@@ -52,5 +54,11 @@ class QuestionsController < ApplicationController
 
   def set_question
     @question = Question.find(params[:id])
+  end
+
+  def check_user
+    unless @question.user == current_user
+      redirect_to root_path, alert: "権限がありません"
+    end
   end
 end

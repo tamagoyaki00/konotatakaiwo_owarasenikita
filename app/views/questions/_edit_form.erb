@@ -1,14 +1,13 @@
-<div class="flex items-center justify-center mt-8">
-  <div class="bg-white shadow-md rounded-lg p-6 w-full md:w-3/4 lg:w-1/2 xl:w-1/3">
-    <%= form_with model: @question_form, local: true do |f| %>
+<%= form_with model: @question_form, url: question_path(@question_form.question), method: :patch, local: true do |f| %>
 
-    <%= render 'shared/error_messages', object: f.object %>
+  <%# --- バリデーションエラーメッセージ --- %>
+  <%= render 'shared/error_messages', object: f.object %>
 
-      <%# タイトル %>
+  <%# --- 質問タイトル入力欄 --- %>
       <div data-controller="textarea" class="relative mb-6">
         <%= f.text_area :title,
             data: { textarea_target: "input" },
-            class: "peer w-full h-20 p-3 pt-6 border border-black rounded focus:outline-none focus:border-orange resize-none transition-all duration-200",
+            class: "peer w-full h-14 p-3 pt-6 border border-black rounded focus:outline-none focus:border-orange resize-none transition-all duration-200",
             placeholder: "" %>
 
         <%= f.label :title,
@@ -23,12 +22,11 @@
         <% end %>
       </div>
 
-
-      <%# 選択肢1 %>
+  <%# --- 選択肢入力欄 --- %>
       <div class="relative mb-6" data-controller="textarea">
         <%= f.text_area :option1_content,
             data: { textarea_target: "input" },
-            class: "peer w-full h-20 p-3 pt-6 border border-black rounded focus:outline-none focus:border-orange transition-all duration-200",
+            class: "peer w-full h-14 p-3 pt-6 border border-black rounded focus:outline-none focus:border-orange transition-all duration-200",
             placeholder: "" %>
         <%= f.label :option1_content,
             data: { textarea_target: "label" },
@@ -44,7 +42,7 @@
       <div class="relative mb-6" data-controller="textarea">
         <%= f.text_area :option2_content,
             data: { textarea_target: "input" },
-            class: "peer w-full h-20 p-3 pt-6 border border-black rounded focus:outline-none focus:border-orange transition-all duration-200",
+            class: "peer w-full h-14 p-3 pt-6 border border-black rounded focus:outline-none focus:border-orange transition-all duration-200",
             placeholder: "" %>
         <%= f.label :option2_content,
             data: { textarea_target: "label" },
@@ -57,9 +55,16 @@
         <% end %>
       </div>
 
+  <%# --- フッター（作成者情報とボタン類） --- %>
+  <div class="flex items-center space-x-3 mt-8 pt-4 border-t border-gray-200">
+    <img src="<%= question.user.google_image_url %>" alt="<%= question.user.name %>" class="w-10 h-10 rounded-full">
+    <span class="font-md"><%= t('.creater')%>: <%= question.user.name %></span>
 
-      <div class="mt-4 text-center">
-        <%= f.submit class: "button" %>
-      </div>
-    <% end %>
+    <div class="ml-auto flex items-center space-x-4">
+      <%# キャンセルボタン（質問詳細に戻る） %>
+      <%= link_to t('.cancel'), question_path(question), class: "text-gray-500 hover:text-gray-900" %>
+      <%# 更新ボタン %>
+      <%= f.submit class: "py-2 px-4 rounded-lg bg-orange text-white font-semibold hover:bg-dark-orange transition duration-200 cursor-pointer" %>
+    </div>
   </div>
+<% end %>

@@ -72,6 +72,9 @@ class QuestionForm
   private
 
   def load_from_question
+      Rails.logger.debug "Loading from question: #{@question.inspect}"
+    Rails.logger.debug "Question persisted?: #{@question.persisted?}"
+    Rails.logger.debug "Question options: #{@question.options.to_a.inspect}"
     self.title = @question.title
     self.user_id = @question.user_id
     @question.options.each_with_index do |option, i|
