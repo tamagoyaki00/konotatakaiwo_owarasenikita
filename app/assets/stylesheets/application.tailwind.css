@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Zen+Antique&display=swap');
 @import "tailwindcss";
+@plugin "daisyui";
 
 @theme {
   /* フォント */

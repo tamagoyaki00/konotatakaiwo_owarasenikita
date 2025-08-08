@@ -10,18 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_08_05_062524) do
+ActiveRecord::Schema[7.2].define(version: 2025_08_08_022111) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "opinions", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "question_id", null: false
-    t.bigint "option_id", null: false
     t.text "content", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["option_id"], name: "index_opinions_on_option_id"
     t.index ["question_id"], name: "index_opinions_on_question_id"
     t.index ["user_id", "question_id"], name: "index_opinions_on_user_id_and_question_id"
     t.index ["user_id"], name: "index_opinions_on_user_id"
@@ -70,7 +68,6 @@ ActiveRecord::Schema[7.2].define(version: 2025_08_05_062524) do
     t.index ["user_id"], name: "index_votes_on_user_id"
   end
 
-  add_foreign_key "opinions", "options"
   add_foreign_key "opinions", "questions"
   add_foreign_key "opinions", "users"
   add_foreign_key "options", "questions"

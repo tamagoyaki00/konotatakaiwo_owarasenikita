@@ -1,0 +1,12 @@
+<% if @opinion.errors.present? %>
+  <%= turbo_stream.replace "opinion-form" do %>
+    <%= render 'form', opinion: @opinion, question: @opinion.question %>
+  <% end %>
+<% else %>
+  <%= turbo_stream.prepend "table-opinion" do %>
+    <%= render 'opinion', opinion: @opinion %>
+  <% end %>
+  <%= turbo_stream.replace "opinion-form" do %>
+    <%= render 'form', opinion: Opinion.new, question: @opinion.question %>
+  <% end %>
+<% end %>

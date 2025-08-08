@@ -4,7 +4,7 @@ class User < ApplicationRecord
 
   has_many :questions
   has_many :votes
-  has_many :opinions, dependent: destroy
+  has_many :opinions, dependent: :destroy
 
   validates :name, presence: true
   validates :email, presence: true, uniqueness: true
@@ -39,5 +39,9 @@ class User < ApplicationRecord
 
   def voted_on_question?(question)
     votes.joins(:option).exists?(options: { question_id: question.id })
+  end
+
+  def voted_option_for(question)
+    votes.joins(:option).find_by(options: { question_id: question.id })&.option
   end
 end
