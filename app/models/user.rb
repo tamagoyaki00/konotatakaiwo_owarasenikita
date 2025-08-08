@@ -44,4 +44,8 @@ class User < ApplicationRecord
   def voted_option_for(question)
     votes.joins(:option).find_by(options: { question_id: question.id })&.option
   end
+
+  def own?(object)
+    id == object&.user_id
+  end
 end
