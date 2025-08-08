@@ -1,7 +1,7 @@
 <div id="opinion-form">
   <div class="opinion-form-section mb-6">
     <% if current_user %>
-      <%= form_with model: [question, opinion] do |f| %>
+      <%= form_with model: [@question, opinion] do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
         <div class="flex items-center space-x-2">
           <%= f.text_area :content, placeholder: "意見を投稿...", class: "textarea textarea-bordered w-full" %>
@@ -9,7 +9,7 @@
         </div>
       <% end %>
     <% else %>
-      <p>意見を投稿するには<a href="<%= new_user_session_path %>" class="link link-primary">ログイン</a>してください。</p>
+      <p>t('.opinion_login_prompot)</p>
     <% end %>
   </div>
 </div>

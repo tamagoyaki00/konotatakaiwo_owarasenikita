@@ -1,0 +1,11 @@
+<% if @opinion.errors.present? %>
+  <%= turbo_stream.replace "opinion_#{opinion.id}" do %>
+    <%= render 'edit_form', question: @question, opinion: @opinion %>
+  <% end %>
+<% else %>
+  <%= turbo_stream.replace "opinion_#{@opinion.id}" do %>
+    <%= render 'opinion', opinion: @opinion %>
+  <% end %>
+<% end %>
+
+<%= turbo_stream_flash %>

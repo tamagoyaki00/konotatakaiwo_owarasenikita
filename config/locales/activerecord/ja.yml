@@ -18,6 +18,8 @@ ja:
       vote:
         user_id: ''
         option_id: 選択肢
+      opinion:
+        content: 意見
     errors:
       models:
         vote:

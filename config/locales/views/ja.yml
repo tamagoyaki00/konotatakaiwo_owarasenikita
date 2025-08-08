@@ -37,6 +37,13 @@ ja:
       return_index: お題一覧に戻る
     options_with_results:
       choose: どちらか選択してください
-      vote_login_prompt: "投票するにはログインしてください"
+      vote_login_prompt: "投票するにはログインが必要です"
       re-vote: "投票をやり直す"
       already_voted: "このお題は投票済みです"
+  opinions:
+    edit_form:
+      cancel: キャンセル
+    form:
+      opinion_login_prompt: "意見を投稿するにはログインが必要です"
+    opinion:
+      delete_confirm: "本当に削除しますか?"
