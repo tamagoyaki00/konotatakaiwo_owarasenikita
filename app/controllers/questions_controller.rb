@@ -1,6 +1,8 @@
 class QuestionsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[ index show ]
   before_action :set_question, only: %i[ show edit update destroy ]
+  before_action :check_user, only: %i[ edit update destroy ]
+
   def index
     @questions = Question.all.includes(:user).order(created_at: :desc)
   end
@@ -29,19 +31,21 @@ class QuestionsController < ApplicationController
   end
 
   def update
-    @question_form = QuestionForm.new(question: @question, params: question_form_params)
-    if @qustion_form.save
-      notice = "更新しました"
-    else
-      notice = "更新に失敗しました"
-      render :edit, status: :unprocessable_entity
-    end
+    @question_form = QuestionForm.new(question: @question, attributes: question_form_params.merge(user_id: current_user.id))
+      if @question_form.save
+        flash.now[:notice] = "お題が更新されました"
+      else
+        flash.now[:alert] = "お題の更新に失敗しました"
+        render turbo_stream: turbo_stream.replace(
+          "question_#{@question.id}",
+          partial: "questions/form",
+          locals: { question_form: @question_form }), status: :unprocessable_entity
+      end
   end
 
   def destroy
     @question.destroy
-
-    redirect_to root_path
+    redirect_to questions_path, notice: "お題が削除されました", status: :see_other
   end
 
   private
@@ -52,5 +56,11 @@ class QuestionsController < ApplicationController
 
   def set_question
     @question = Question.find(params[:id])
+  end
+
+  def check_user
+    unless @question.user == current_user
+      redirect_to root_path, alert: "権限がありません"
+    end
   end
 end

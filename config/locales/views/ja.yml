@@ -1,7 +1,7 @@
 ja:
   helpers:
     submit:
-      update: 更新する
+      update: 更新
       create: 投稿
   header:
     title: この戦いを終わらせに来た！！～究極の二択～
@@ -33,13 +33,20 @@ ja:
     index:
       no_questions: お題はありません
     show:
-      creater: 作成者
       return_index: お題一覧に戻る
     options_with_results:
       choose: どちらか選択してください
       vote_login_prompt: "投票するにはログインが必要です"
       re-vote: "投票をやり直す"
       already_voted: "このお題は投票済みです"
+    question_content:
+      creater: 作成者
+      edit: 編集
+      destroy: 削除
+      delete_confirm: "本当に削除しますか?"
+    edit_form:
+      creater: 作成者
+      cancel: キャンセル
   opinions:
     edit_form:
       cancel: キャンセル
@@ -47,3 +54,5 @@ ja:
       opinion_login_prompt: "意見を投稿するにはログインが必要です"
     opinion:
       delete_confirm: "本当に削除しますか?"
+      edit: 編集
+      destroy: 削除

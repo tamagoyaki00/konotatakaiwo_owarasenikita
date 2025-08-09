@@ -12,20 +12,11 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       flash.now[:notice] = "名前を変更しました"
     else
-      respond_to do |format|
-      # 通常のHTMLリクエストの場合 (例: JS無効時や直接フォーム送信された場合)
-      format.html { render :edit, status: :unprocessable_entity }
-
-      # Turbo Stream リクエストの場合 (フォーム送信がTurbo経由の場合)
-      format.turbo_stream do
-        # エラーメッセージを持つフォームを、user_profile_frame に置き換える
-        render turbo_stream: turbo_stream.replace(
-          "user_profile_frame", # ターゲットとなるTurbo FrameのID
-          partial: "users/form", # フォームのパーシャル
-          locals: { user: @user } # エラー情報を持つ @user を渡す
-        ), status: :unprocessable_entity
-      end
-      end
+      render turbo_stream: turbo_stream.replace(
+        "user_profile_frame",
+        partial: "users/form",
+        locals: { user: @user }
+      ), status: :unprocessable_entity
     end
   end
 

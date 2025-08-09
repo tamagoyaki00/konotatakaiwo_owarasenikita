@@ -84,7 +84,7 @@ RSpec.describe 'Opinions', type: :system do
         within("#opinion_#{opinion.id}") do
           click_link '編集'
         end
-        expect(page).to have_button '更新する'
+        expect(page).to have_button '更新'
         expect(page).to have_link 'キャンセル'
       end
 
@@ -92,7 +92,7 @@ RSpec.describe 'Opinions', type: :system do
         within("#opinion_#{opinion.id}") do
           click_link '編集'
           fill_in 'opinion_content', with: '編集後の意見'
-          click_button '更新する'
+          click_button '更新'
         end
 
         expect(page).to have_content('編集後の意見')

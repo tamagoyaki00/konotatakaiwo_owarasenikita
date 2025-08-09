@@ -9,12 +9,12 @@
 
   <% if current_user&.own?(opinion) %>
     <div class="mt-2 text-right">
-      <%= link_to edit_opinion_path(opinion), data: { turbo_frame: "opinion_#{opinion.id}" }, class: "hover:text-blue mr-2" do %>
-        編集<i class="fa-solid fa-pen-to-square"></i>
+      <%= link_to edit_opinion_path(opinion), data: { turbo_frame: "opinion_#{opinion.id}" }, class: "text-gray-500 hover:text-gray-900 mr-2" do %>
+        <%= t('.edit') %><i class="fa-solid fa-pen-to-square"></i>
       <% end %>
 
-      <%= link_to opinion_path(opinion), data: { turbo_method: :delete, turbo_confirm: t('.delete_confirm')}, class: "hover:text-red-500" do %>
-        削除<i class="fa-solid fa-trash"></i>
+      <%= link_to opinion_path(opinion), data: { turbo_method: :delete, turbo_confirm: t('.delete_confirm')}, class: "text-red-500 hover:text-red-700" do %>
+        <%= t('.destroy')%><i class="fa-solid fa-trash"></i>
       <% end %>
     </div>
   <% end %>
