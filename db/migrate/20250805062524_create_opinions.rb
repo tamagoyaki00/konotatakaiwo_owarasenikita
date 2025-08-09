@@ -8,6 +8,6 @@ class CreateOpinions < ActiveRecord::Migration[7.2]
       t.timestamps
     end
 
-    add_index :opinions, [:user_id, :question_id]
+    add_index :opinions, [ :user_id, :question_id ]
   end
 end

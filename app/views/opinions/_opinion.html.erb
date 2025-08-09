@@ -7,14 +7,14 @@
   </div>
   <p class="mt-2"><%= opinion.content %></p>
 
-  <% if current_user.own?(opinion) %>
+  <% if current_user&.own?(opinion) %>
     <div class="mt-2 text-right">
       <%= link_to edit_opinion_path(opinion), data: { turbo_frame: "opinion_#{opinion.id}" }, class: "hover:text-blue mr-2" do %>
-        <i class="fa-solid fa-pen-to-square"></i>
+        編集<i class="fa-solid fa-pen-to-square"></i>
       <% end %>
 
       <%= link_to opinion_path(opinion), data: { turbo_method: :delete, turbo_confirm: t('.delete_confirm')}, class: "hover:text-red-500" do %>
-        <i class="fa-solid fa-trash"></i>
+        削除<i class="fa-solid fa-trash"></i>
       <% end %>
     </div>
   <% end %>
