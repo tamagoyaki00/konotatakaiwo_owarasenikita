@@ -45,7 +45,7 @@ RSpec.describe "Users", type: :system do
         click_link 'ユーザー名を編集'
 
         fill_in 'user_name', with: '新しい名前'
-        click_button '更新する'
+        click_button '更新'
 
         expect(page).to have_content('名前を変更しました')
         expect(page).to have_content('新しい名前')
@@ -56,7 +56,7 @@ RSpec.describe "Users", type: :system do
         visit user_path(user)
         click_link 'ユーザー名を編集'
         fill_in 'user_name', with: ''
-        click_button '更新する'
+        click_button '更新'
 
         expect(page).to have_content("名前を入力してください")
         expect(current_path).to eq user_path(user)

@@ -260,7 +260,7 @@ RSpec.describe "Questions", type: :system do
             fill_in 'タイトル', with: '更新されたタイトル'
             fill_in '選択肢1', with: '更新された選択肢1'
             fill_in '選択肢2', with: '更新された選択肢2'
-            click_button '更新する'
+            click_button '更新'
             expect(page).to have_content 'お題が更新されました'
             expect(page).to have_content '更新されたタイトル'
             expect(page).to have_content '更新された選択肢1'
@@ -358,7 +358,7 @@ RSpec.describe "Questions", type: :system do
 
         it 'お題が削除され、一覧ページにリダイレクトされること' do
             expect(page).to have_button '削除'
-            accept_confirm '本当に削除しますか？' do
+            accept_confirm '本当に削除しますか?' do
               click_on '削除'
             end
             expect(page).to have_current_path(questions_path)

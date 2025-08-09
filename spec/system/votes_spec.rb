@@ -13,7 +13,7 @@ RSpec.describe 'Votes', type: :system do
       expect(page).to have_no_selector "input[type='submit'][value*='投票']"
       expect(page).to have_content question.options.first.content
       expect(page).to have_content question.options.last.content
-      expect(page).to have_content ('投票するにはログインしてください')
+      expect(page).to have_content '投票するにはログインが必要です'
     end
   end
 

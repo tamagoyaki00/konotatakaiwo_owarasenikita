@@ -8,6 +8,8 @@ class QuestionsController < ApplicationController
   end
 
   def show
+    @opinion =  Opinion.new
+    @opinions = @question.opinions.includes(:user).order(created_at: :desc)
   end
 
   def new
