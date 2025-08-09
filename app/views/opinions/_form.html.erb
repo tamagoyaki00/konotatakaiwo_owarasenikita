@@ -1,0 +1,15 @@
+<div id="opinion-form">
+  <div class="opinion-form-section mb-6">
+    <% if current_user %>
+      <%= form_with model: [@question, opinion] do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+        <div class="flex items-center space-x-2">
+          <%= f.text_area :content, placeholder: "意見を投稿...", class: "textarea textarea-bordered w-full" %>
+          <%= f.submit class: "button" %>
+        </div>
+      <% end %>
+    <% else %>
+      <p><%= t('opinions.form.opinion_login_prompt') %></p>
+    <% end %>
+  </div>
+</div>

@@ -9,7 +9,8 @@ Rails.application.routes.draw do
   resources :users, only: %i[ show edit update ]
 
   resources :questions do
-    resources :votes, only: %i[ create destroy], shallow: true
+    resources :votes, only: %i[ create destroy ], shallow: true
+    resources :opinions, only: %i[ create edit update destroy ], shallow: true
   end
 
 
