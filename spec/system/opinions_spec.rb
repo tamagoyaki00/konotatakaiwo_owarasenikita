@@ -71,8 +71,8 @@ RSpec.describe 'Opinions', type: :system do
       login(user)
       visit question_path(question)
     end
-    
-    context '自分の投稿',js: true do
+
+    context '自分の投稿', js: true do
       it '自分の意見には編集・削除リンクが表示されること' do
         within("#opinion_#{opinion.id}") do
           expect(page).to have_link '編集'
@@ -82,7 +82,7 @@ RSpec.describe 'Opinions', type: :system do
 
       it '編集をクリックすると編集フォームが表示されること' do
         within("#opinion_#{opinion.id}") do
-          click_link'編集'
+          click_link '編集'
         end
         expect(page).to have_button '更新する'
         expect(page).to have_link 'キャンセル'
@@ -105,7 +105,7 @@ RSpec.describe 'Opinions', type: :system do
       it 'キャンセルボタンで元の表示に戻ること' do
         within("#opinion_#{opinion.id}") do
           click_link '編集'
-          expect(page).to have_link'キャンセル'
+          expect(page).to have_link 'キャンセル'
           click_link 'キャンセル'
         end
         expect(page).to have_content(opinion.content)
