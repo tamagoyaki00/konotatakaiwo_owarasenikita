@@ -67,7 +67,7 @@ RSpec.describe "Questions", type: :system do
             expect(page).to have_content('タイトル')
             expect(page).to have_content('選択肢1')
             expect(page).to have_content('選択肢2')
-            expect(page).to have_button('投稿')
+            expect(page).to have_button '投稿'
           end
         end
 
@@ -226,8 +226,8 @@ RSpec.describe "Questions", type: :system do
 
         it '詳細画面から編集ボタンを押すとフォーム画面が表示されること' do
             click_link '編集'
-            expect(page).to have_button('更新する')
-            expect(page).to have_link('キャンセル')
+            expect(page).to have_button '更新'
+            expect(page).to have_link 'キャンセル'
             expect(page).to have_field('タイトル', with: question.title)
             expect(page).to have_field('選択肢1', with: question.options.first.content)
             expect(page).to have_field('選択肢2', with: question.options.last.content)

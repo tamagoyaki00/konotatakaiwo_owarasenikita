@@ -47,9 +47,6 @@ ja:
     edit_form:
       creater: 作成者
       cancel: キャンセル
-    opinion:
-      edit: 編集
-      destroy: 削除
   opinions:
     edit_form:
       cancel: キャンセル
@@ -57,3 +54,5 @@ ja:
       opinion_login_prompt: "意見を投稿するにはログインが必要です"
     opinion:
       delete_confirm: "本当に削除しますか?"
+      edit: 編集
+      destroy: 削除
