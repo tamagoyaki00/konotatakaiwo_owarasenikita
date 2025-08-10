@@ -215,8 +215,10 @@ RSpec.describe "Questions", type: :system do
     end
 
     describe 'GET /edit' do
-      let!(:question) { create(:question, :with_options, user: user) }
+      let!(:question) { create(:question, user: user) }
       let!(:other_user) { create(:user) }
+      let!(:option1) { create(:option, question: question) }
+      let!(:option2) { create(:option, question: question) }
 
       context '自分の投稿の場合' do
         before do
@@ -229,8 +231,8 @@ RSpec.describe "Questions", type: :system do
             expect(page).to have_button '更新'
             expect(page).to have_link 'キャンセル'
             expect(page).to have_field('タイトル', with: question.title)
-            expect(page).to have_field('選択肢1', with: question.options.first.content)
-            expect(page).to have_field('選択肢2', with: question.options.last.content)
+            expect(page).to have_field('選択肢1', with: option1.content)
+            expect(page).to have_field('選択肢2', with: option2.content)
         end
       end
 
@@ -243,6 +245,32 @@ RSpec.describe "Questions", type: :system do
             it '編集ボタンが表示されないこと' do
                 expect(page).not_to have_link '編集'
             end
+        end
+
+        context '既に投票がある場合' do
+          before do
+            vote = create(:vote, option: option1, user: other_user)
+            login(user)
+            visit question_path(question)
+          end
+
+          it '編集リンクが表示されず、編集不可メッセージが表示されること' do
+            expect(page).not_to have_link '編集'
+            expect(page).to have_content('※ 既に回答・意見があるため、編集はできません')
+          end
+        end
+
+        context '既に意見がある場合' do
+          before do
+            create(:opinion, question: question, user: other_user)
+            login(user)
+            visit question_path(question)
+          end
+
+          it '編集リンクが表示されず、編集不可メッセージが表示されること' do
+            expect(page).not_to have_link '編集'
+            expect(page).to have_content('※ 既に回答・意見があるため、編集はできません')
+          end
         end
     end
 
