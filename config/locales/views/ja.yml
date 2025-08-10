@@ -44,6 +44,7 @@ ja:
       edit: 編集
       destroy: 削除
       delete_confirm: "本当に削除しますか?"
+      cannot_edit_due_to_replies: "※ 既に回答・意見があるため、編集はできません"
     edit_form:
       creater: 作成者
       cancel: キャンセル
