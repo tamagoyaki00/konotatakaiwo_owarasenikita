@@ -10,9 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_08_08_022111) do
+ActiveRecord::Schema[7.2].define(version: 2025_08_10_133047) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "opinion_reactions", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "opinion_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["opinion_id"], name: "index_opinion_reactions_on_opinion_id"
+    t.index ["user_id", "opinion_id"], name: "index_opinion_reactions_on_user_id_and_opinion_id", unique: true
+    t.index ["user_id"], name: "index_opinion_reactions_on_user_id"
+  end
 
   create_table "opinions", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -68,6 +78,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_08_08_022111) do
     t.index ["user_id"], name: "index_votes_on_user_id"
   end
 
+  add_foreign_key "opinion_reactions", "opinions"
+  add_foreign_key "opinion_reactions", "users"
   add_foreign_key "opinions", "questions"
   add_foreign_key "opinions", "users"
   add_foreign_key "options", "questions"

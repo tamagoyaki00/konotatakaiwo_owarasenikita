@@ -1,0 +1,2 @@
+class OpinionReaction < ApplicationRecord
+end
