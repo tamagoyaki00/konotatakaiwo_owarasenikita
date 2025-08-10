@@ -27,10 +27,19 @@ class QuestionsController < ApplicationController
   end
 
   def edit
+    unless @question.editable?
+      redirect_to @question, alert: "回答や意見がある質問は編集できません"
+      return
+    end
+
     @question_form = QuestionForm.new(question: @question)
   end
 
   def update
+    unless @question.editable?
+      redirect_to @question, alert: "回答や意見がある質問は編集できません"
+      return
+    end
     @question_form = QuestionForm.new(question: @question, attributes: question_form_params.merge(user_id: current_user.id))
       if @question_form.save
         flash.now[:notice] = "お題が更新されました"

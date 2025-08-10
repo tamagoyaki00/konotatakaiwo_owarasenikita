@@ -11,4 +11,12 @@ class Question < ApplicationRecord
   def total_votes
     votes.count
   end
+
+  def editable?
+    votes.empty? && opinions.empty?
+  end
+
+  def has_responses?
+    votes.exists? || opinions.exists?
+  end
 end
