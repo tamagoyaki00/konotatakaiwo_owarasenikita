@@ -1,17 +1,19 @@
 <div id="opinion-reaction-<%= opinion.id %>">
   <% if current_user_liked?(opinion) %>
-    <%= link_to opinion_reaction_path(current_user_reaction_for(opinion)), 
-                data: { turbo_method: :delete }, 
+    <%= link_to opinion_reaction_path(current_user_reaction_for(opinion)),
+                data: { turbo_method: :delete },
                 class: "reaction-button active" do %>
-      <i class="fa-solid fa-thumbs-up fa-bounce"></i>
+      <i class="fa-solid fa-thumbs-up" id="reaction-icon-<%= opinion.id %>"></i>
       <span><%= opinion.opinion_reactions.count %></span>
+      <span class="tooltip-text">それな！を取り消す</span>
     <% end %>
   <% else %>
-    <%= link_to opinion_opinion_reactions_path(opinion), 
-                data: { turbo_method: :post }, 
-                class: "opinion-reaction text-gray-400" do %>
-      <i class="fa-solid fa-thumbs-up fa-bounce"></i>
+    <%= link_to opinion_opinion_reactions_path(opinion),
+                data: { turbo_method: :post },
+                class: "reaction-button" do %>
+      <i class="fa-solid fa-thumbs-up" id="reaction-icon-<%= opinion.id %>"></i>
       <span><%= opinion.opinion_reactions.count %></span>
+      <span class="tooltip-text">それな！</span>
     <% end %>
   <% end %>
 </div>
