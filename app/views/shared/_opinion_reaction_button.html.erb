@@ -5,7 +5,7 @@
                 class: "reaction-button active" do %>
       <i class="fa-solid fa-thumbs-up" id="reaction-icon-<%= opinion.id %>"></i>
       <span><%= opinion.opinion_reactions.count %></span>
-      <span class="tooltip-text">それな！を取り消す</span>
+      <span class="tooltip-text"><%= t('.delete_reaction')%></span>
     <% end %>
   <% else %>
     <%= link_to opinion_opinion_reactions_path(opinion),
@@ -13,7 +13,7 @@
                 class: "reaction-button" do %>
       <i class="fa-solid fa-thumbs-up" id="reaction-icon-<%= opinion.id %>"></i>
       <span><%= opinion.opinion_reactions.count %></span>
-      <span class="tooltip-text">それな！</span>
+      <span class="tooltip-text"><%= t('.reaction')%></span>
     <% end %>
   <% end %>
 </div>

@@ -10,6 +10,9 @@ ja:
     models:
       question: 問題
       option: 選択肢
+      opinion: 意見
+      vote: 投票
+      opinion_reaction: それな！
     attributes:
       question:
         title: タイトル
