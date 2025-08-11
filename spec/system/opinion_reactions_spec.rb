@@ -8,7 +8,7 @@ RSpec.describe 'OpinionReactions', type: :system do
 
   describe 'ログイン前' do
     it 'それなボタンが表示されない、またはクリックできない' do
-      visit question_path(question) 
+      visit question_path(question)
 
       expect(page).not_to have_css('fa-solid fa-thumbs-up')
     end
@@ -20,12 +20,12 @@ RSpec.describe 'OpinionReactions', type: :system do
     context 'まだリアクションしていない場合' do
       it 'それなボタンをクリックするとリアクションが追加される' do
         visit question_path(question)
-        
+
         expect {
            find('.fa-solid.fa-thumbs-up').click
         sleep 0.5
         }.to change(OpinionReaction, :count).by(1)
-        
+
         expect(page).to have_content('1')
         expect(page).to have_css('.reaction-button.active')
         expect(page).to have_content('それな！を取り消す')
@@ -35,7 +35,7 @@ RSpec.describe 'OpinionReactions', type: :system do
         visit question_path(question)
         find('.fa-solid.fa-thumbs-up').click
         sleep 0.5
-        
+
         reaction = OpinionReaction.last
         expect(reaction.user).to eq user
         expect(reaction.opinion).to eq opinion
@@ -49,12 +49,12 @@ RSpec.describe 'OpinionReactions', type: :system do
 
       it 'それなボタンをクリックするとリアクションが解除される' do
         visit question_path(question)
-        
+
         expect {
           find('.fa-solid.fa-thumbs-up').click
           sleep 0.5
         }.to change(OpinionReaction, :count).by(-1)
-        
+
         expect(page).to have_content('0')
         expect(page).to have_css('.reaction-button:not(.active)')
         expect(page).to have_content('それな！')
@@ -68,7 +68,7 @@ RSpec.describe 'OpinionReactions', type: :system do
 
         expect(page).to have_content('3')
         find('.fa-solid.fa-thumbs-up').click
-        
+
         expect(page).to have_content('4')
       end
     end
