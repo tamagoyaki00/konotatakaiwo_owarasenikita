@@ -7,6 +7,9 @@
   </div>
   <p class="mt-2"><%= opinion.content %></p>
 
+    <p><%= opinion.content %></p>
+    <%= render 'shared/opinion_reaction_button', opinion: opinion %>
+
   <% if current_user&.own?(opinion) %>
     <div class="mt-2 text-right">
       <%= link_to edit_opinion_path(opinion), data: { turbo_frame: "opinion_#{opinion.id}" }, class: "text-gray-500 hover:text-gray-900 mr-2" do %>
