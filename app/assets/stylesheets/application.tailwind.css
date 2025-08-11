@@ -72,10 +72,11 @@
   
   .tooltip-text {
     position: absolute;
-    bottom: 100%;
+    /* 🔽 ここを変更：上から下に移動 */
+    top: 100%;              /* bottom: 100%; から変更 */
     left: 50%;
     transform: translateX(-50%);
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.6);
     color: white;
     padding: 4px 8px;
     border-radius: 4px;
@@ -84,29 +85,25 @@
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.2s ease;
-    margin-bottom: 5px;
+    margin-top: 5px;        /* margin-bottom: 5px; から変更 */
+    
+    /* 🔽 矢印を追加（上向き） */
+    &::before {
+      content: "";
+      position: absolute;
+      bottom: 100%;         /* tooltipの上に配置 */
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-bottom: 4px solid rgba(0, 0, 0, 0.6);
+    }
   }
   
   &:hover .tooltip-text {
     opacity: 1;
-  }
-}
-
-
-
-.bounce-animation {
-  animation: reaction-bounce 0.6s ease-in-out;
-}
-
-@keyframes reaction-bounce {
-  0%, 20%, 50%, 80%, 100% {
-    transform: translateY(0);
-  }
-  40% {
-    transform: translateY(-10px);
-  }
-  60% {
-    transform: translateY(-5px);
   }
 }
 
