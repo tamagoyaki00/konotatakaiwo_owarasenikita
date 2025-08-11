@@ -57,3 +57,7 @@ ja:
       delete_confirm: "本当に削除しますか?"
       edit: 編集
       destroy: 削除
+  shared:
+    opinion_reaction_button:
+      reaction: "それな！"
+      delete_reaction: "それな！を取り消す"

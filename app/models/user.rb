@@ -5,6 +5,8 @@ class User < ApplicationRecord
   has_many :questions
   has_many :votes
   has_many :opinions, dependent: :destroy
+  has_many :opinion_reactions, dependent: :destroy
+  has_many :liked_opinions, through: :opinion_reactions, source: :opinion
 
   validates :name, presence: true
   validates :email, presence: true, uniqueness: true

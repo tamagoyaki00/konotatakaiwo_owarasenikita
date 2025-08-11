@@ -4,11 +4,8 @@
 
 import { application } from "./application"
 
-import TextareaController from "./textarea_controller.js"
+import FlashMessageController from "./flash_message_controller"
+application.register("flash-message", FlashMessageController)
+
+import TextareaController from "./textarea_controller"
 application.register("textarea", TextareaController)
-
-import FlashMessageController from "./flash_message_controller.js"
-application.register("flash-message",FlashMessageController)
-
-import HelloController from "./hello_controller"
-application.register("hello", HelloController)

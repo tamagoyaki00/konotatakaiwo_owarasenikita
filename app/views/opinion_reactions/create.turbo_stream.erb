@@ -1,0 +1,3 @@
+<%= turbo_stream.replace "opinion-reaction-#{@opinion.id}" do %>
+  <%= render 'shared/opinion_reaction_button', opinion: @opinion %>
+<% end %>

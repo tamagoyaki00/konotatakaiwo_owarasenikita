@@ -42,6 +42,71 @@
   @apply shadow-xl -translate-y-0.5;
 }
 
+.reaction-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 20px;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  color: #6b7280; 
+  
+
+  &:hover {
+    background-color: rgba(59, 130, 246, 0.1); 
+    color: #3b82f6; 
+    text-decoration: none;
+  }
+
+
+  &.active {
+    color: #3b82f6; 
+    
+    &:hover {
+      background-color: rgba(239, 68, 68, 0.1);
+      color: #ef4444; 
+    }
+  }
+  
+  .tooltip-text {
+    position: absolute;
+    /* 🔽 ここを変更：上から下に移動 */
+    top: 100%;              /* bottom: 100%; から変更 */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    margin-top: 5px;        /* margin-bottom: 5px; から変更 */
+    
+    /* 🔽 矢印を追加（上向き） */
+    &::before {
+      content: "";
+      position: absolute;
+      bottom: 100%;         /* tooltipの上に配置 */
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-bottom: 4px solid rgba(0, 0, 0, 0.6);
+    }
+  }
+  
+  &:hover .tooltip-text {
+    opacity: 1;
+  }
+}
+
 /* Google Sign-In Button Component */
 .gsi-material-button {
   @apply select-none appearance-none bg-white border border-gray-700 rounded-full box-border text-gray-800 cursor-pointer font-sans text-sm h-10 tracking-wider outline-none overflow-hidden px-3 relative text-center transition-all duration-200 ease-in-out align-middle whitespace-nowrap w-auto max-w-lg min-w-min;

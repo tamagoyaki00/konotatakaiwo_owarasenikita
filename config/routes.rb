@@ -10,7 +10,9 @@ Rails.application.routes.draw do
 
   resources :questions do
     resources :votes, only: %i[ create destroy ], shallow: true
-    resources :opinions, only: %i[ create edit update destroy ], shallow: true
+    resources :opinions, only: %i[ create edit update destroy ], shallow: true do
+      resources :opinion_reactions, only: %i[create destroy], shallow: true
+    end
   end
 
 

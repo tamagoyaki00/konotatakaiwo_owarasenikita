@@ -1,0 +1,22 @@
+<div id="opinion-reaction-<%= opinion.id %>">
+  <% if user_signed_in? %>
+    <% if current_user_liked?(opinion) %>
+      <%= link_to opinion_reaction_path(current_user_reaction_for(opinion)),
+                  data: { turbo_method: :delete },
+                  class: "reaction-button active" do %>
+        <i class="fa-solid fa-thumbs-up" id="reaction-icon-<%= opinion.id %>"></i>
+        <span><%= opinion.opinion_reactions.count %></span>
+        <span class="tooltip-text"><%= t('.delete_reaction') %></span>
+      <% end %>
+    <% else %>
+      <%= link_to opinion_opinion_reactions_path(opinion),
+                  data: { turbo_method: :post },
+                  class: "reaction-button" do %>
+        <i class="fa-solid fa-thumbs-up" id="reaction-icon-<%= opinion.id %>"></i>
+        <span><%= opinion.opinion_reactions.count %></span>
+        <span class="tooltip-text"><%= t('.reaction') %></span>
+      <% end %>
+    <% end %>
+  <% else %>
+  <% end %>
+</div>

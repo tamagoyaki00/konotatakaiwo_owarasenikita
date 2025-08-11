@@ -21,4 +21,12 @@ module ApplicationHelper
     return nil unless user
     user.votes.joins(:option).find_by(options: { question_id: question.id })
   end
+
+  def current_user_reaction_for(opinion)
+    current_user.opinion_reactions.find_by(opinion: opinion)
+  end
+
+  def current_user_liked?(opinion)
+    current_user.liked_opinions.include?(opinion)
+  end
 end
