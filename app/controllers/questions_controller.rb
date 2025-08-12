@@ -9,7 +9,7 @@ class QuestionsController < ApplicationController
 
   def show
     @opinion =  Opinion.new
-    @opinions = @question.opinions.includes(:user).order(created_at: :desc)
+    @opinions = @question.opinions.includes(:user).order(created_at: :desc).page(params[:page]).per(4)
   end
 
   def new

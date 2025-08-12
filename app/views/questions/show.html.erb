@@ -16,8 +16,19 @@
       <div class="bg-white shadow-lg rounded-lg p-6 border border-gray-200">
         <h2 class="text-2xl font-bold mb-4">己の意見を主張しよう</h2>
         <%= render 'opinions/form', question: @question, opinion: @opinion %>
-        <div id="table-opinion" class="space-y-6">
-          <%= render @opinions %>
+
+        <div class="opinions-container max-h-116 overflow-y-auto">
+          <%= turbo_frame_tag "opinions-page-#{@opinions.current_page}" do %>
+            <div id="table-opinion" class="space-y-6">
+              <%= render @opinions %>
+            </div>
+
+            <% if @opinions.next_page %>
+              <%= turbo_frame_tag "opinions-page-#{@opinions.next_page}",
+                  loading: :lazy,
+                  src: question_path(@question, page: @opinions.next_page) %>
+            <% end %>
+          <% end %>
         </div>
       </div>
     </div>
