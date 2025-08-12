@@ -72,8 +72,7 @@
   
   .tooltip-text {
     position: absolute;
-    /* 🔽 ここを変更：上から下に移動 */
-    top: 100%;              /* bottom: 100%; から変更 */
+    top: 100%;
     left: 50%;
     transform: translateX(-50%);
     background-color: rgba(0, 0, 0, 0.6);
@@ -85,13 +84,13 @@
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.2s ease;
-    margin-top: 5px;        /* margin-bottom: 5px; から変更 */
+    margin-top: 5px;
     
-    /* 🔽 矢印を追加（上向き） */
+  
     &::before {
       content: "";
       position: absolute;
-      bottom: 100%;         /* tooltipの上に配置 */
+      bottom: 100%;
       left: 50%;
       transform: translateX(-50%);
       width: 0;
@@ -105,6 +104,30 @@
   &:hover .tooltip-text {
     opacity: 1;
   }
+}
+
+.opinions-container {
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e0 #f7fafc;
+}
+
+.opinions-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.opinions-container::-webkit-scrollbar-track {
+  background: #f7fafc;
+  border-radius: 3px;
+}
+
+.opinions-container::-webkit-scrollbar-thumb {
+  background: #cbd5e0;
+  border-radius: 3px;
+}
+
+.opinions-container::-webkit-scrollbar-thumb:hover {
+  background: #a0aec0;
 }
 
 /* Google Sign-In Button Component */
