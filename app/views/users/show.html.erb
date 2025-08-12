@@ -1,20 +1,24 @@
 <div class="mt-15 flex items-center justify-center flex-col space-y-10">
-    <h2><%= t('.profile') %></h2>
-    <%= image_tag @user.google_image_url, alt: @user.name, class: "w-20 rounded-full" %>
+  <h2 class="text-xl"><%= t('.profile') %></h2>
+  <%= image_tag @user.google_image_url, alt: @user.name, class: "w-20 rounded-full" %>
 
-    <%= turbo_frame_tag "user_profile_frame" do %>
-      <%= render "profile_display", user: @user %>
-    <% end %>
-
-    <h2 class="mt-15 text-2xl"><%= t('.your_questions')%></h2>
-        <% if @user.questions.any? %>
-            <div class="user-questions-list">
-            <% @user.questions.each do |question| %>
-                <%= render "questions/question", question: question %>
-            <% end %>
-            </div>
-        <% else %>
-            <p><%= t('.no_questions')%></p>
-            <%= link_to t('.post_new_question'), new_question_path, class: "button" %>
-        <% end %>
+  <%= turbo_frame_tag "user_profile_frame" do %>
+    <%= render "profile_display", user: @user %>
+  <% end %>
 </div>
+
+<h2 class="mt-15 text-2xl text-center"><%= t('.your_questions')%></h2>
+<% if @user.questions.any? %>
+  <div class="m-10 h-auto">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4">
+      <% @user.questions.each do |question| %>
+        <%= render "questions/question", question: question %>
+      <% end %>
+    </div>
+  </div>
+<% else %>
+  <div class="text-center">
+    <p><%= t('.no_questions')%></p>
+    <%= link_to t('.post_new_question'), new_question_path, class: "button" %>
+  </div>
+<% end %>
