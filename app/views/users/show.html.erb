@@ -10,7 +10,7 @@
 <h2 class="mt-15 text-2xl text-center"><%= t('.your_questions')%></h2>
 <% if @user.questions.any? %>
   <div class="m-10 h-auto">
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 justify-items-center">
       <% @user.questions.each do |question| %>
         <%= render "questions/question", question: question %>
       <% end %>

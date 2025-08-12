@@ -1,15 +1,15 @@
-
-  <%= link_to question_path(question), class: "block no-underline" do %>
-    <div class="bg-white border border-orange shadow-md w-70 h-50 p-6 mt-6 rounded-lg card-animated space-y-4">
-      <h2 class="text-xl font-bold"><%= question.title %></h2>
-      <div class="flex items-center space-x-2">
-        <img src="<%= question.user.google_image_url %>" alt="<%= question.user.name %>" class="w-8 h-8 rounded-full">
-        <span class="font-medium"><%= question.user.name %>(<%= t('.creater')%>)</span>
-      </div>
-      <div class="flex items-center space-x-2">
-        <i class="fa-regular fa-face-laugh-beam"></i>
-        <span>投票数: <%= question.total_votes %></span>
-      </div>
+<%= link_to question_path(question), data: { turbo_frame: "_top" }, class: "block no-underline" do %>
+  <div class="bg-white border border-orange shadow-md w-80 h-50 p-6 mt-6 rounded-lg card-animated space-y-4">
+    <h2 class="text-xl font-bold"><%= question.title %></h2>
+    <div class="flex items-center space-x-2">
+      <img src="<%= question.user.google_image_url %>" alt="<%= question.user.name %>" class="w-8 h-8 rounded-full">
+      <span><%= t('.creater')%>: <%= question.user.name %></span>
     </div>
-  <% end %>
+    <div class="flex items-center space-x-2">
+      <i class="fa-regular fa-face-laugh-beam"></i>
+      <span>投票数: <%= question.total_votes %></span>
+    </div>
+  </div>
+<% end %>
+
 
