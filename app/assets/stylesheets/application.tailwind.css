@@ -1,10 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Zen+Antique&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Zen+Antique&display=swap');
 @import "tailwindcss";
 @plugin "daisyui";
 
 @theme {
   /* フォント */
   --font-zen: "Zen Antique", sans-serif;
+  --font-noto-sans: "Noto Sans JP", sans-serif;
 }
 
 @theme {
