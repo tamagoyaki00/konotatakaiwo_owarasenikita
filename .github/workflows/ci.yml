@@ -62,10 +62,10 @@ jobs:
         ports:
           - 4445:4444
         options:  --shm-size=2g
-        #   --health-cmd "curl --fail http://localhost:4444/wd/hub || exit 1"
-        #   --health-interval 10s
-        #   --health-timeout 10s
-        #   --health-retries 15
+                  --health-cmd "curl --fail http://localhost:4444/wd/hub || exit 1"
+                  --health-interval 10s
+                  --health-timeout 10s
+                  --health-retries 15
 
 
     steps:
