@@ -11,7 +11,7 @@
 <h2 class="mt-15 text-2xl text-center"><%= t('.your_questions')%></h2>
 <% if @questions.any? %>
   <div class="mt-8">
-    <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 justify-items-center">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4 lg:gap-5 2xl:gap-6 justify-items-center">
       <% @questions.each do |question| %>
         <%= render "questions/question", question: question %>
       <% end %>

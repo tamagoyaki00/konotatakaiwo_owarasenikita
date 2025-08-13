@@ -4,7 +4,7 @@
     <div class="questions-container">
       <%= turbo_frame_tag "questions-page-#{@questions.current_page}" do %>
         <div class="mb-8">
-          <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 justify-items-center">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4 lg:gap-5 2xl:gap-6 justify-items-center">
             <%= render @questions %>
           </div>
         </div>
@@ -14,7 +14,7 @@
               loading: :lazy,
               src: questions_path(page: @questions.next_page) do %>
             <div class="mb-8">
-              <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 justify-items-center">
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4 lg:gap-5 2xl:gap-6 justify-items-center">
               </div>
             </div>
           <% end %>
