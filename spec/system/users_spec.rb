@@ -31,7 +31,7 @@ RSpec.describe "Users", type: :system do
       end
 
       it 'ヘッダーからマイページに遷移できる' do
-        click_on 'マイページ'
+        click_link 'マイページ', visible: true
         expect(page).to have_current_path(user_path(user), wait: 5)
         expect(current_path).to eq user_path(user)
         expect(page).to have_content(user.name)

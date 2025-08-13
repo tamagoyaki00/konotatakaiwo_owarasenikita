@@ -41,7 +41,7 @@ class QuestionsController < ApplicationController
       return
     end
     @question_form = QuestionForm.new(question: @question, attributes: question_form_params.merge(user_id: current_user.id))
-      if @question_form.update
+      if @question_form.save
         flash.now[:notice] = "お題が更新されました"
       else
         flash.now[:alert] = "お題の更新に失敗しました"
