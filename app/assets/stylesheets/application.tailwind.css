@@ -28,11 +28,11 @@
 }
 
 .button {
-  @apply bg-orange hover:bg-dark-orange text-white font-bold py-1.5 px-4 rounded-lg focus:outline-none focus:ring focus:ring-orange-300/75 cursor-pointer;
+  @apply bg-orange hover:bg-dark-orange transition duration-200 text-white font-semibold py-1.5 px-4 rounded-lg focus:outline-none focus:ring focus:ring-orange-300/75 cursor-pointer;
 }
 
 .cancel-button {
-  @apply bg-gray-400 hover:bg-gray-500 text-white font-bold py-1.5 px-4 rounded-lg focus:outline-none focus:ring focus:ring-gray-300/75 cursor-pointer;
+  @apply bg-gray-400 hover:bg-gray-500 transition duration-200 text-white font-semibold py-1.5 px-4 rounded-lg focus:outline-none focus:ring focus:ring-gray-300/75 cursor-pointer;
 }
 
 .card-animated {
