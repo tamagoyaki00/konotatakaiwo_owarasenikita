@@ -4,7 +4,7 @@ class QuestionsController < ApplicationController
   before_action :check_user, only: %i[ edit update destroy ]
 
   def index
-    @questions = Question.all.includes(:user).order(created_at: :desc)
+    @questions = Question.all.includes(:user).order(created_at: :desc).page(params[:page]).per(12)
   end
 
   def show

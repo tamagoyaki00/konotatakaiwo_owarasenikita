@@ -3,12 +3,10 @@ module ApplicationHelper
     turbo_stream.update "flash", partial: "shared/flash"
   end
 
-
   def flash_class_for(type)
     case type.to_sym
     when :notice then "bg-green-100 border border-green-400 text-green-700"
     when :alert, :error then "bg-red-100 border border-red-400 text-red-700"
-    else "bg-blue-100 border border-blue-400 text-blue-700"
     end
   end
 
@@ -28,5 +26,16 @@ module ApplicationHelper
 
   def current_user_liked?(opinion)
     current_user.liked_opinions.include?(opinion)
+  end
+
+  def body_classes
+    case "#{controller_name}##{action_name}"
+    when "users#show"
+      "min-h-full"
+    when "questions#index"
+      "h-screen"
+    else
+      "min-h-screen"
+    end
   end
 end

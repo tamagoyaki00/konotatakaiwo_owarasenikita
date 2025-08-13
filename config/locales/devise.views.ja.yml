@@ -45,8 +45,8 @@ ja:
       last_attempt: もう一回誤るとアカウントがロックされます。
       locked: アカウントはロックされています。
       not_found_in_database: "%{authentication_keys}またはパスワードが違います。"
-      timeout: セッションがタイムアウトしました。もう一度ログインしてください。
-      unauthenticated: ログインしてください。
+      timeout: セッションがタイムアウトしました。もう一度ログインしてください
+      unauthenticated: ログインしてください
       unconfirmed: メールアドレスの本人確認が必要です。
     mailer:
       confirmation_instructions:
@@ -78,7 +78,7 @@ ja:
         subject: アカウントのロック解除について
     omniauth_callbacks:
       failure: "%{kind} アカウントでのログインに失敗しました。理由：（%{reason}）"
-      success: "%{kind} アカウントでログインしました。"
+      success: "%{kind} アカウントでログインしました"
     passwords:
       edit:
         change_my_password: パスワードを変更する

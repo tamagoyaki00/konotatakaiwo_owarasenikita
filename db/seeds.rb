@@ -7,3 +7,17 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+if Rails.env.development?
+
+  users = []
+  10.times do
+    user = FactoryBot.create(:user)
+    users << user
+  end
+
+  100.times do |i|
+    question = FactoryBot.create(:question, :with_options,
+                                user: users.sample)
+  end
+end

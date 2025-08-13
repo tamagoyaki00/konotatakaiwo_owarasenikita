@@ -16,7 +16,7 @@
     <div class="mt-2 text-right space-x-2">
       <%= f.submit class: "button" %>
       <%= link_to t('.cancel'), question_path(opinion.question), 
-                  class: "button",
+                  class: "cancel-button",
                   data: { turbo_frame: "_top" } %>
     </div>
   <% end %>
