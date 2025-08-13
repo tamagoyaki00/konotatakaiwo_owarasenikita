@@ -10,5 +10,8 @@ application.register("flash-message", FlashMessageController)
 import MobileMenuController from "./mobile_menu_controller"
 application.register("mobile-menu", MobileMenuController)
 
+import ProgressBarController from "./progress_bar_controller"
+application.register("progress-bar", ProgressBarController)
+
 import TextareaController from "./textarea_controller"
 application.register("textarea", TextareaController)

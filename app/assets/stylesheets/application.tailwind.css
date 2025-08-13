@@ -21,11 +21,8 @@
  --color-sky: #7793ab;
  --color-white: #f8f8f8;
 
- /*プログレスバー */
-  --color-progress-gradient: linear-gradient(to right, #ff7e5f, #66b6ff, #5ad85a);
-  --transition-duration-1500: 1500ms;
-
 }
+
 
 .button {
   @apply bg-orange hover:bg-dark-orange transition duration-200 text-white font-semibold py-1.5 px-4 rounded-lg focus:outline-none focus:ring focus:ring-orange-300/75 cursor-pointer;

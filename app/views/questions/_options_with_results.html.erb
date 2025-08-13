@@ -15,8 +15,13 @@
           </div>
 
           <%# プログレスバーの表示 %>
-          <div id="progress-bar-container" class="w-full bg-gray-200 rounded-full h-6 mb-3">
-            <div class="h-full rounded-full transition-all ease-out duration-[1500ms] bg-[linear-gradient(to_right,#48c6ef,#6f86d6)]" style="width: <%= percentage %>%;"></div>
+          <div class="w-full bg-gray-200 rounded-full h-6 mb-3">
+            <div data-controller="progress-bar" 
+                data-progress-bar-percentage-value="<%= percentage.round(2) %>"
+                data-progress-bar-duration-value="1500"
+                class="progress-bar h-full rounded-full bg-[linear-gradient(to_right,#48c6ef,#6f86d6)]"
+                style="width: 0%;">
+            </div>
           </div>
 
           <%# 投票ボタンの表示ロジック %>
