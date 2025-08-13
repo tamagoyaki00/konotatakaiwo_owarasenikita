@@ -17,7 +17,7 @@ if Rails.env.development?
   end
 
   100.times do |i|
-    question = FactoryBot.create(:question, :with_options, 
+    question = FactoryBot.create(:question, :with_options,
                                 user: users.sample)
   end
 end

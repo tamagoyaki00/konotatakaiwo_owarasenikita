@@ -1,0 +1,73 @@
+<header class="bg-cream w-full min-h-[70px] flex items-center px-4 sm:px-6 lg:px-10 font-zen relative" data-controller="mobile-menu">
+  <nav class="flex items-center justify-between w-full">
+    <div class="flex-shrink-0">
+      <h1><span class="text-black text-lg sm:text-xl"><%= t('header.title') %></span></h1>
+    </div>
+
+    <div class="hidden md:flex items-center space-x-4 lg:space-x-8">
+      <div class="flex space-x-4 lg:space-x-8">
+        <%= link_to t('header.create_question'), new_question_path, class: "text-black hover:underline hover:text-orange hover:decoration-orange text-sm lg:text-base whitespace-nowrap" %>
+        <%= link_to t('header.question_list'), questions_path, class: "text-black hover:underline hover:text-orange hover:decoration-orange text-sm lg:text-base whitespace-nowrap" %>
+      </div>
+
+      <% if current_user %>
+        <%= link_to t('header.mypage'), user_path(current_user), class: "text-black hover:underline hover:text-orange hover:decoration-orange text-sm lg:text-base whitespace-nowrap" %>
+        <%= link_to t('header.logout'), logout_path, data: { turbo_method: :delete }, class: "text-black hover:underline hover:text-orange hover:decoration-orange text-sm lg:text-base whitespace-nowrap" %>
+      <% else %>
+        <%= link_to user_google_oauth2_omniauth_authorize_path, class: "gsi-material-button scale-75 lg:scale-100", data: { turbo: false, method: :post }, id: "google-sign-in-button" do %>
+          <div class="gsi-material-button-state"></div>
+          <div class="gsi-material-button-content-wrapper">
+            <div class="gsi-material-button-icon">
+              <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" xmlns:xlink="http://www.w3.org/1999/xlink" style="display: block;">
+                <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"></path>
+                <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"></path>
+                <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"></path>
+                <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"></path>
+                <path fill="none" d="M0 0h48v48H0z"></path>
+              </svg>
+            </div>
+            <span class="gsi-material-button-contents"><%= t('header.login') %></span>
+            <span style="display: none;"><%= t('header.login') %></span>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class="md:hidden">
+      <button class="text-black focus:outline-none p-2 hover:bg-gray-100 rounded-md transition-colors" data-action="click->mobile-menu#toggle">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" data-mobile-menu-target="icon">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
+  </nav>
+  <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-cream bg-opacity-50 shadow-lg z-50 border-t border-gray-200" data-mobile-menu-target="menu">
+    <div class="px-4 py-4 space-y-3">
+      <%= link_to t('header.create_question'), new_question_path, class: "block text-black hover:text-orange py-2 border-b border-gray-100" %>
+      <%= link_to t('header.question_list'), questions_path, class: "block text-black hover:text-orange py-2 border-b border-gray-100" %>
+      
+      <% if current_user %>
+        <%= link_to t('header.mypage'), user_path(current_user), class: "block text-black hover:text-orange py-2 border-b border-gray-100" %>
+        <%= link_to t('header.logout'), logout_path, data: { turbo_method: :delete }, class: "block text-black hover:text-orange py-2" %>
+      <% else %>
+        <div class="py-2">
+          <%= link_to user_google_oauth2_omniauth_authorize_path, class: "gsi-material-button scale-90", data: { turbo: false, method: :post } do %>
+            <div class="gsi-material-button-state"></div>
+            <div class="gsi-material-button-content-wrapper">
+              <div class="gsi-material-button-icon">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" style="display: block;">
+                  <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"></path>
+                  <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"></path>
+                  <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"></path>
+                  <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"></path>
+                  <path fill="none" d="M0 0h48v48H0z"></path>
+                </svg>
+              </div>
+              <span class="gsi-material-button-contents"><%= t('header.login') %></span>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</header>
