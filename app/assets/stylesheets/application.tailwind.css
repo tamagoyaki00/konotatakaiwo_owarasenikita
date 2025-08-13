@@ -133,7 +133,7 @@
 
 /* Google Sign-In Button Component */
 .gsi-material-button {
-  @apply select-none appearance-none bg-white border border-gray-700 rounded-full box-border text-gray-800 cursor-pointer font-sans text-sm h-10 tracking-wider outline-none overflow-hidden px-3 relative text-center transition-all duration-200 ease-in-out align-middle whitespace-nowrap w-auto max-w-lg min-w-min;
+  @apply select-none appearance-none bg-white border border-gray-700 rounded-full box-border text-gray-800 cursor-pointer font-sans text-sm h-10 tracking-wider outline-none overflow-hidden px-3 relative text-center transition-all duration-200 ease-in-out align-middle whitespace-nowrap w-auto max-w-lg min-w-0;
   box-shadow: 0 1px 2px 0 rgba(60, 64, 67, .30), 0 1px 3px 1px rgba(60, 64, 67, .15);
 }
 

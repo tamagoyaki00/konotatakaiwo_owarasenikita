@@ -50,8 +50,8 @@
         <%= link_to t('header.mypage'), user_path(current_user), class: "block text-black hover:text-orange py-2 border-b border-gray-100" %>
         <%= link_to t('header.logout'), logout_path, data: { turbo_method: :delete }, class: "block text-black hover:text-orange py-2" %>
       <% else %>
-        <div class="py-2">
-          <%= link_to user_google_oauth2_omniauth_authorize_path, class: "gsi-material-button scale-90", data: { turbo: false, method: :post } do %>
+        <div class="py-2 w-fit">
+          <%= link_to user_google_oauth2_omniauth_authorize_path, class: "gsi-material-button flex items-center", data: { turbo: false, method: :post } do %>
             <div class="gsi-material-button-state"></div>
             <div class="gsi-material-button-content-wrapper">
               <div class="gsi-material-button-icon">
