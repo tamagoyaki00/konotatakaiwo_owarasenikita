@@ -1,3 +1,4 @@
+<div class="container mx-auto p-4 overflow-y-auto">
 <div class="mt-15 flex items-center justify-center flex-col space-y-10">
   <h2 class="text-xl"><%= t('.profile') %></h2>
   <%= image_tag @user.google_image_url, alt: @user.name, class: "w-20 rounded-full" %>
@@ -8,10 +9,10 @@
 </div>
 
 <h2 class="mt-15 text-2xl text-center"><%= t('.your_questions')%></h2>
-<% if @user.questions.any? %>
-  <div class="m-10 h-auto">
+<% if @questions.any? %>
+  <div class="mt-8">
     <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 justify-items-center">
-      <% @user.questions.each do |question| %>
+      <% @questions.each do |question| %>
         <%= render "questions/question", question: question %>
       <% end %>
     </div>
@@ -22,3 +23,4 @@
     <%= link_to t('.post_new_question'), new_question_path, class: "button" %>
   </div>
 <% end %>
+</div>

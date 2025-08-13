@@ -18,17 +18,19 @@
     <script src="https://kit.fontawesome.com/9eebda5a5d.js" crossorigin="anonymous"></script>
   </head>
 
-<body class="flex flex-col h-screen bg-amber-50 text-black font-noto-sans">
-  <div class="flex-shrink-0">
-    <%= render "shared/header"%>
-  </div>
-
-  <main class="flex-1 overflow-hidden">
-    <div id="flash" class="fixed top-16 right-0 p-4 z-50 pointer-events-none">
-      <%= render "shared/flash" %>
+  <body class="<%= body_classes %> flex flex-col bg-amber-50 text-black font-noto-sans">
+    <div class="flex-shrink-0">
+      <%= render "shared/header"%>
     </div>
-    <%= yield %>
-  </main>
-    <%= render "shared/footer"%>
+
+    <main class="flex-1 overflow-y-auto relative">
+      <div id="flash" class="fixed top-16 right-0 p-4 z-50 pointer-events-none">
+        <%= render "shared/flash" %>
+      </div>
+      <%= yield %>
+    </main>
+    <footer class="flex-shrink-0">
+      <%= render "shared/footer"%>
+    </footer>
   </body>
 </html>
