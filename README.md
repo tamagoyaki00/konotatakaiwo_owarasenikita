@@ -1,24 +1,23 @@
-# README
+## この戦いを終わらせに来た！！～究極の2択～
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+このアプリは究極の2択問題を作成・回答できるアプリです。  
+長年の論争をここで終結させましょう！
 
-* Ruby version
+---
 
-* System dependencies
+## 目的
+CRUD機能が入ったアプリの作成  
+Hotwireを使ったアプリの作成  
+実際に書いたコードに対してテストコードを書く練習  
 
-* Configuration
+---
 
-* Database creation
+## 仕様技術
+Rails 7.2.2  
+Ruby 3.3.6  
+Hotwire  
+Render  
+Neon  
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+---
