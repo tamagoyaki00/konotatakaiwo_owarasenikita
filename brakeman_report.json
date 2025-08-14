@@ -1,0 +1,166 @@
+{
+  "scan_info": {
+    "app_path": "/myapp",
+    "rails_version": "7.2.2.1",
+    "security_warnings": 2,
+    "start_time": "2025-08-14 16:54:58 +0900",
+    "end_time": "2025-08-14 16:54:58 +0900",
+    "duration": 0.496599518,
+    "checks_performed": [
+      "BasicAuth",
+      "BasicAuthTimingAttack",
+      "CSRFTokenForgeryCVE",
+      "ContentTag",
+      "CookieSerialization",
+      "CreateWith",
+      "CrossSiteScripting",
+      "DefaultRoutes",
+      "Deserialize",
+      "DetailedExceptions",
+      "DigestDoS",
+      "DynamicFinders",
+      "EOLRails",
+      "EOLRuby",
+      "EscapeFunction",
+      "Evaluation",
+      "Execute",
+      "FileAccess",
+      "FileDisclosure",
+      "FilterSkipping",
+      "ForgerySetting",
+      "HeaderDoS",
+      "I18nXSS",
+      "JRubyXML",
+      "JSONEncoding",
+      "JSONEntityEscape",
+      "JSONParsing",
+      "LinkTo",
+      "LinkToHref",
+      "MailTo",
+      "MassAssignment",
+      "MimeTypeDoS",
+      "ModelAttrAccessible",
+      "ModelAttributes",
+      "ModelSerialize",
+      "NestedAttributes",
+      "NestedAttributesBypass",
+      "NumberToCurrency",
+      "PageCachingCVE",
+      "Pathname",
+      "PermitAttributes",
+      "QuoteTableName",
+      "Ransack",
+      "Redirect",
+      "RegexDoS",
+      "Render",
+      "RenderDoS",
+      "RenderInline",
+      "ResponseSplitting",
+      "RouteDoS",
+      "SQL",
+      "SQLCVEs",
+      "SSLVerify",
+      "SafeBufferManipulation",
+      "SanitizeConfigCve",
+      "SanitizeMethods",
+      "SelectTag",
+      "SelectVulnerability",
+      "Send",
+      "SendFile",
+      "SessionManipulation",
+      "SessionSettings",
+      "SimpleFormat",
+      "SingleQuotes",
+      "SkipBeforeFilter",
+      "SprocketsPathTraversal",
+      "StripTags",
+      "SymbolDoSCVE",
+      "TemplateInjection",
+      "TranslateBug",
+      "UnsafeReflection",
+      "UnsafeReflectionMethods",
+      "ValidationRegex",
+      "VerbConfusion",
+      "WeakRSAKey",
+      "WithoutProtection",
+      "XMLDoS",
+      "YAMLParsing"
+    ],
+    "number_of_controllers": 8,
+    "number_of_models": 7,
+    "number_of_templates": 31,
+    "ruby_version": "3.3.6",
+    "brakeman_version": "7.1.0"
+  },
+  "warnings": [
+    {
+      "warning_type": "Dynamic Render Path",
+      "warning_code": 15,
+      "fingerprint": "14081bb415ad66b663a052d8f7696601cbf70c4704195739a2f4cee4c81d016d",
+      "check_name": "Render",
+      "message": "Render path contains parameter value",
+      "file": "app/views/questions/show.html.erb",
+      "line": 23,
+      "link": "https://brakemanscanner.org/docs/warning_types/dynamic_render_path/",
+      "code": "render(action => Question.find(params[:id]).opinions.includes(:user).order(:created_at => :desc).page(params[:page]).per(4), {})",
+      "render_path": [
+        {
+          "type": "controller",
+          "class": "QuestionsController",
+          "method": "show",
+          "line": 13,
+          "file": "app/controllers/questions_controller.rb",
+          "rendered": {
+            "name": "questions/show",
+            "file": "app/views/questions/show.html.erb"
+          }
+        }
+      ],
+      "location": {
+        "type": "template",
+        "template": "questions/show"
+      },
+      "user_input": "params[:page]",
+      "confidence": "Weak",
+      "cwe_id": [
+        22
+      ]
+    },
+    {
+      "warning_type": "Dynamic Render Path",
+      "warning_code": 15,
+      "fingerprint": "22e78a56b60660a5d2ba87029ab4c22f931321330f78f9dfc86837c128680ea3",
+      "check_name": "Render",
+      "message": "Render path contains parameter value",
+      "file": "app/views/questions/index.html.erb",
+      "line": 8,
+      "link": "https://brakemanscanner.org/docs/warning_types/dynamic_render_path/",
+      "code": "render(action => Question.all.includes(:user).order(:created_at => :desc).page(params[:page]).per(12), {})",
+      "render_path": [
+        {
+          "type": "controller",
+          "class": "QuestionsController",
+          "method": "index",
+          "line": 8,
+          "file": "app/controllers/questions_controller.rb",
+          "rendered": {
+            "name": "questions/index",
+            "file": "app/views/questions/index.html.erb"
+          }
+        }
+      ],
+      "location": {
+        "type": "template",
+        "template": "questions/index"
+      },
+      "user_input": "params[:page]",
+      "confidence": "Weak",
+      "cwe_id": [
+        22
+      ]
+    }
+  ],
+  "ignored_warnings": [],
+  "errors": [],
+  "obsolete": []
+}
