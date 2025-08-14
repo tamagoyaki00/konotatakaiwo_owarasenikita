@@ -11,7 +11,7 @@ class OpinionsController < ApplicationController
       @opinions = @question.opinions.includes(:user).order(created_at: :desc)
     else
       @opinions = @question.opinions.includes(:user).order(created_at: :desc)
-      render :create, status: :unprocessable_entity
+      render "questions/show", status: :unprocessable_entity
     end
    end
 
@@ -23,6 +23,7 @@ class OpinionsController < ApplicationController
       flash.now[:notice] = "意見が更新されました"
     else
       flash.now[:alert] = "意見の更新に失敗しました"
+      render :edit, status: :unprocessable_entity
     end
   end
 
