@@ -4,7 +4,7 @@
     <div class="flex-grow lg:w-2/3 mb-8 lg:mb-0">
       <div class="bg-white shadow-lg rounded-lg p-6 mb-6 border border-gray-200">
         <%= turbo_frame_tag "question_#{@question.id}" do %>
-          <%= render 'question_content', question: @question, current_user: current_user %>
+          <%= render "question_content", question: @question, current_user: current_user %>
         <% end %>
       </div>
       <div class="text-center mt-4">

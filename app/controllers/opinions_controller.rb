@@ -11,7 +11,7 @@ class OpinionsController < ApplicationController
       @opinions = @question.opinions.includes(:user).order(created_at: :desc)
     else
       @opinions = @question.opinions.includes(:user).order(created_at: :desc)
-      render "questions/show", status: :unprocessable_entity
+      render :create, status: :unprocessable_entity
     end
    end
 

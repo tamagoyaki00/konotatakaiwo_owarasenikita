@@ -1,7 +1,7 @@
 <%= form_with model: @question_form, url: question_path(@question_form.question), method: :patch, local: true do |f| %>
 
   <%# --- バリデーションエラーメッセージ --- %>
-
+  <%= render 'shared/error_messages', object: f.object %>
   <%# --- 質問タイトル入力欄 --- %>
       <div data-controller="textarea" class="relative mb-6">
         <%= f.text_area :title,
