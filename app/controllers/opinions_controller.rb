@@ -23,6 +23,7 @@ class OpinionsController < ApplicationController
       flash.now[:notice] = "意見が更新されました"
     else
       flash.now[:alert] = "意見の更新に失敗しました"
+      render :edit, status: :unprocessable_entity
     end
   end
 

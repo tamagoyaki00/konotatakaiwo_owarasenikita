@@ -44,11 +44,7 @@ class QuestionsController < ApplicationController
       if @question_form.save
         flash.now[:notice] = "お題が更新されました"
       else
-        flash.now[:alert] = "お題の更新に失敗しました"
-        render turbo_stream: turbo_stream.replace(
-          "question_#{@question.id}",
-          partial: "questions/form",
-          locals: { question_form: @question_form }), status: :unprocessable_entity
+        render :edit, status: :unprocessable_entity
       end
   end
 

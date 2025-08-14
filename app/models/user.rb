@@ -39,7 +39,7 @@ class User < ApplicationRecord
     votes.exists?(option: option)
   end
 
-  def voted_on_question?(question)
+  def voted?(question)
     votes.joins(:option).exists?(options: { question_id: question.id })
   end
 

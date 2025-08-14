@@ -2,7 +2,6 @@
 
   <%# --- バリデーションエラーメッセージ --- %>
   <%= render 'shared/error_messages', object: f.object %>
-
   <%# --- 質問タイトル入力欄 --- %>
       <div data-controller="textarea" class="relative mb-6">
         <%= f.text_area :title,

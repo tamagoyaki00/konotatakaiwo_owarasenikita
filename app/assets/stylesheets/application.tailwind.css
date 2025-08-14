@@ -71,14 +71,15 @@
   .tooltip-text {
     position: absolute;
     top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 20%;
+    transform: translateX(-60%);
     background-color: rgba(0, 0, 0, 0.6);
     color: white;
     padding: 4px 8px;
     border-radius: 4px;
     font-size: 12px;
     white-space: nowrap;
+    width: auto;
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.2s ease;
@@ -89,7 +90,7 @@
       content: "";
       position: absolute;
       bottom: 100%;
-      left: 50%;
+      left: 75%;
       transform: translateX(-50%);
       width: 0;
       height: 0;
