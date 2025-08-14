@@ -13,11 +13,7 @@ end
     if @user.update(user_params)
       flash.now[:notice] = "名前を変更しました"
     else
-      render turbo_stream: turbo_stream.replace(
-        "user_profile_frame",
-        partial: "users/form",
-        locals: { user: @user }
-      ), status: :unprocessable_entity
+      render :edit, status: :unprocessable_entity
     end
   end
 
