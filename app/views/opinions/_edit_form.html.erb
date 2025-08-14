@@ -8,7 +8,6 @@
   
   <%= form_with model: opinion do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
-    
     <div class="mt-2">
       <%= f.text_area :content, class: "textarea textarea-bordered w-full" %>
     </div>

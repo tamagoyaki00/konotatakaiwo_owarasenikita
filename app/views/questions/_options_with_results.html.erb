@@ -1,11 +1,8 @@
 <div id="voting-section">
-  <% user_voted_on_this_question = current_user&.voted_on_question?(question) %>
-
-  <% if user_voted_on_this_question %>
+  <% if current_user&.voted?(question) %>
     <%# --- 投票済みのユーザー向け表示（結果を表示） --- %>
     <div class="space-y-6">
       <% question.options.each do |option| %>
-        <% user_voted_on_this_option = current_user&.voted_for?(option) %>
         <% percentage = option.percentage_of_question_votes %>
 
         <div class="bg-gray-100 rounded-lg p-4 shadow-sm">
@@ -25,7 +22,7 @@
           </div>
 
           <%# 投票ボタンの表示ロジック %>
-          <% if user_voted_on_this_option %>
+          <% if current_user&.voted_for?(option) %>
             <div class="flex justify-center">
               <%= button_to vote_path(current_user.votes.find_by(option: option)), method: :delete,
                             class: "py-2 px-4 rounded-lg bg-red-500 text-white font-semibold text-sm hover:bg-red-600 transition duration-200",

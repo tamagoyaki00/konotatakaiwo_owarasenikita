@@ -22,6 +22,25 @@
         <% end %>
       </div>
 
+  <%# --- 質問タイトル入力欄 --- %>
+      <div data-controller="textarea" class="relative mb-6">
+        <%= f.text_area :title,
+            data: { textarea_target: "input" },
+            class: "peer w-full h-14 p-3 pt-6 border border-black rounded focus:outline-none focus:border-orange resize-none transition-all duration-200",
+            placeholder: "" %>
+
+        <%= f.label :title,
+            data: { textarea_target: "label" },
+            class: "absolute left-3 top-3 text-black transition-all duration-200 peer-focus:top-1 peer-focus:left-3 peer-focus:text-xs peer-focus:text-orange peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-not-placeholder-shown:top-1 peer-not-placeholder-shown:left-3 peer-not-placeholder-shown:text-xs peer-not-placeholder-shown:text-orange" %>
+
+        <div data-textarea-target="counter" class="absolute bottom-1 right-2 text-xs text-black">
+          <span data-textarea-target="currentLength">0</span>/<%= 29 %>
+        </div>
+        <% @question_form.errors.full_messages_for(:title).each do |message| %>
+          <p class="text-red-500 text-xs italic mt-1"><%= message %></p>
+        <% end %>
+      </div>
+
   <%# --- 選択肢入力欄 --- %>
       <div class="relative mb-6" data-controller="textarea">
         <%= f.text_area :option1_content,
