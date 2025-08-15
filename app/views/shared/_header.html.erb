@@ -1,19 +1,19 @@
 <header class="bg-cream w-full min-h-[70px] flex items-center px-4 sm:px-6 lg:px-10 font-zen relative" data-controller="mobile-menu">
   <nav class="flex items-center justify-between w-full">
     <div class="flex-shrink-0 flex justify-center items-center">
-      <%= image_tag "samurai.png", alt: "ロゴ", class: "h-16 w-16" %>
-      <%= link_to t('header.title'), questions_path, class: "text-black text-lg ml-2 sm:text-xl" %>
+      <%= image_tag "samurai.png", alt: "ロゴ", class: "h-12 w-12 sm:h-14 w-14 lg:h-16 w-16" %>
+      <%= link_to t('header.title'), questions_path, class: "ml-2 text-xs sm:text-md lg:text-lg" %>
     </div>
 
     <div class="hidden md:flex items-center space-x-4 lg:space-x-8">
       <div class="flex space-x-4 lg:space-x-8">
-        <%= link_to t('header.create_question'), new_question_path, class: "text-black hover:underline hover:text-orange hover:decoration-orange text-sm lg:text-base whitespace-nowrap" %>
-        <%= link_to t('header.question_list'), questions_path, class: "text-black hover:underline hover:text-orange hover:decoration-orange text-sm lg:text-base whitespace-nowrap" %>
+        <%= link_to t('header.create_question'), new_question_path, class: "hover:underline hover:text-orange hover:decoration-orange text-sm sm:text-md lg:text-lg whitespace-nowrap" %>
+        <%= link_to t('header.question_list'), questions_path, class: "hover:underline hover:text-orange hover:decoration-orange text-sm sm:text-md lg:text-lg whitespace-nowrap" %>
       </div>
 
       <% if current_user %>
-        <%= link_to t('header.mypage'), user_path(current_user), class: "text-black hover:underline hover:text-orange hover:decoration-orange text-sm lg:text-base whitespace-nowrap" %>
-        <%= link_to t('header.logout'), logout_path, data: { turbo_method: :delete }, class: "text-black hover:underline hover:text-orange hover:decoration-orange text-sm lg:text-base whitespace-nowrap" %>
+        <%= link_to t('header.mypage'), user_path(current_user), class: "hover:underline hover:text-orange hover:decoration-orange text-sm sm:text-md lg:text-lg whitespace-nowrap" %>
+        <%= link_to t('header.logout'), logout_path, data: { turbo_method: :delete }, class: "hover:underline hover:text-orange hover:decoration-orange text-sm sm:text-md lg:text-lg whitespace-nowrap" %>
       <% else %>
         <%= link_to user_google_oauth2_omniauth_authorize_path, class: "gsi-material-button scale-75 lg:scale-100", data: { turbo: false, method: :post }, id: "google-sign-in-button" do %>
           <div class="gsi-material-button-state"></div>
@@ -35,7 +35,7 @@
     </div>
 
     <div class="md:hidden">
-      <button class="text-black focus:outline-none p-2 hover:bg-gray-100 rounded-md transition-colors" data-action="click->mobile-menu#toggle">
+      <button class="focus:outline-none p-2 hover:bg-gray-100 rounded-md transition-colors" data-action="click->mobile-menu#toggle">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" data-mobile-menu-target="icon">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
         </svg>
@@ -44,12 +44,12 @@
   </nav>
   <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-cream bg-opacity-50 shadow-lg z-50 border-t border-gray-200" data-mobile-menu-target="menu">
     <div class="px-4 py-4 space-y-3">
-      <%= link_to t('header.create_question'), new_question_path, class: "block text-black hover:text-orange py-2 border-b border-gray-100" %>
-      <%= link_to t('header.question_list'), questions_path, class: "block text-black hover:text-orange py-2 border-b border-gray-100" %>
+      <%= link_to t('header.create_question'), new_question_path, class: "block hover:text-orange py-2 border-b border-gray-100" %>
+      <%= link_to t('header.question_list'), questions_path, class: "block hover:text-orange py-2 border-b border-gray-100" %>
       
       <% if current_user %>
-        <%= link_to t('header.mypage'), user_path(current_user), class: "block text-black hover:text-orange py-2 border-b border-gray-100" %>
-        <%= link_to t('header.logout'), logout_path, data: { turbo_method: :delete }, class: "block text-black hover:text-orange py-2" %>
+        <%= link_to t('header.mypage'), user_path(current_user), class: "block hover:text-orange py-2 border-b border-gray-100" %>
+        <%= link_to t('header.logout'), logout_path, data: { turbo_method: :delete }, class: "block hover:text-orange py-2" %>
       <% else %>
         <div class="py-2 w-fit">
           <%= link_to user_google_oauth2_omniauth_authorize_path, class: "gsi-material-button flex items-center", data: { turbo: false, method: :post } do %>
