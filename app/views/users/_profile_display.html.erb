@@ -1,5 +1,10 @@
 <%= turbo_frame_tag "user_profile_frame" do %>
-  <div class="text-center space-y-5">
+  <div class="flex flex-col items-center space-y-5">
+    <% if @user.avatar.attached? %>
+      <%= image_tag @user.avatar, alt: @user.name, class: "w-20 rounded-full" %>
+    <% else %>
+      <%= image_tag @user.google_image_url, alt: @user.name, class: "w-20 rounded-full" %>
+    <% end %>
     <div class="text-xl"><%= user.name %></div>
     <%= link_to t('.edit_name'), edit_user_path(user),
                 data: { turbo_frame: "user_profile_frame" },

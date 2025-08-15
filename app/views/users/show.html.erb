@@ -1,7 +1,6 @@
 <div class="container mx-auto p-4 overflow-y-auto">
 <div class="mt-15 flex items-center justify-center flex-col space-y-10">
   <h2 class="text-xl"><%= t('.profile') %></h2>
-  <%= image_tag @user.google_image_url, alt: @user.name, class: "w-20 rounded-full" %>
 
   <%= turbo_frame_tag "user_profile_frame" do %>
     <%= render "profile_display", user: @user %>

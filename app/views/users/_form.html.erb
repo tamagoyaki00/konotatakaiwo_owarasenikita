@@ -1,7 +1,7 @@
 <%= form_with model: user do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
     <%= f.label :avator %>
-    <%= f.file_field :image %>
+    <%= f.file_field :avatar %>
   <div class="field flex flex-col items-center">
     <%= f.label :name, t('.edit_name_label'), class: "mb-2" %>
     <%= f.text_field :name, class: "border border-orange p-2 rounded-md w-48" %>
