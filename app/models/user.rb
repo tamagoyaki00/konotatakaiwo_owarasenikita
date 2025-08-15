@@ -55,6 +55,10 @@ class User < ApplicationRecord
     id == object&.user_id
   end
 
+  def avatar_thumbnail
+    return self.avatar.variant(resize_to_fill: [80, 80]).processed
+  end
+
   private
 
   def validate_avatar_format

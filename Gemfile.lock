@@ -430,6 +430,7 @@ DEPENDENCIES
   rails-i18n (~> 7.0.0)
   rspec-rails
   rubocop-rails-omakase
+  ruby-vips
   selenium-webdriver
   sprockets-rails
   stimulus-rails

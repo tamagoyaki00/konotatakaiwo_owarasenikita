@@ -3,13 +3,13 @@
   <div class="field flex flex-col items-center space-y-2" data-controller="file-preview">
     <%# 画像表示部分 %>
     <% if @user.avatar.attached? %>
-      <%= image_tag @user.avatar, alt: @user.name, class: "w-20 rounded-full" %>
+      <%= image_tag @user.avatar, alt: @user.name, class: "w-20 h-20 rounded-full" %>
     <% else %>
-      <%= image_tag @user.google_image_url, alt: @user.name, class: "w-20 rounded-full" %>
+      <%= image_tag @user.google_image_url, alt: @user.name, class: "w-20 h-20 rounded-full" %>
     <% end %>
 
     <div class="mt-2">
-      <%= f.file_field :avatar, id: "avatar-upload", class:"file-input color ", data: { action: "change->file-preview#showPreview" } %>
+      <%= f.file_field :avatar, id: "avatar-upload", class:"file-input file-input-accent", data: { action: "change->file-preview#showPreview" } %>
     </div>
   
 
