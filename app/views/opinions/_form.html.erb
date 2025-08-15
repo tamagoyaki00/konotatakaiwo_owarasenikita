@@ -4,7 +4,7 @@
       <%= form_with model: [@question, opinion] do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
         <div class="flex flex-col items-center space-x-2">
-          <%= f.text_area :content, placeholder: "意見を投稿...", class: "textarea w-full focus:outline-none focus:border-orange resize-none transition-all duration-200" %>
+          <%= f.text_area :content, placeholder: "意見を投稿...", class: "textarea w-full border border-black focus:outline-none focus:border-orange resize-none transition-all dark:bg-white" %>
           <%= f.submit class: "button mt-4" %>
         </div>
       <% end %>
