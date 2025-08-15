@@ -7,10 +7,26 @@ class User < ApplicationRecord
   has_many :opinions, dependent: :destroy
   has_many :opinion_reactions, dependent: :destroy
   has_many :liked_opinions, through: :opinion_reactions, source: :opinion
+  has_one_attached :avatar
 
   validates :name, presence: true
   validates :email, presence: true, uniqueness: true
   validates :uid, uniqueness: { scope: :provider }
+  validates :image_content_type
+  validates :avatar_size
+
+
+  def image_content_type
+    if image.attached? && !image.content_type.in?(%w[image/jpeg image/png image/gif])
+      errors.add(:image, '：ファイル形式が、JPEG, PNG, GIF以外になってます。ファイル形式をご確認ください。')
+    end
+  end
+
+  def avatar_size
+    if avatar.attached? && avatar.byte_size > 5.megabytes
+      errors.add(:avatar, 'のファイルサイズは5MB以内にしてください')
+    end
+  end
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
