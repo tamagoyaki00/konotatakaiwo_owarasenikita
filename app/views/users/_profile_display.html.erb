@@ -6,7 +6,7 @@
       <%= image_tag @user.google_image_url, alt: @user.name, class: "w-20 rounded-full" %>
     <% end %>
     <div class="text-xl"><%= user.name %></div>
-    <%= link_to t('.edit_name'), edit_user_path(user),
+    <%= link_to t('.edit_profile'), edit_user_path(user),
                 data: { turbo_frame: "user_profile_frame" },
                 class: "button" %>
   </div>
