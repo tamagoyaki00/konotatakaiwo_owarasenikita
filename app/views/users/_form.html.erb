@@ -3,7 +3,7 @@
   <div class="field flex flex-col items-center space-y-2" data-controller="file-preview">
     <%# 画像表示部分 %>
     <% if @user.avatar.attached? %>
-      <%= image_tag @user.avatar, alt: @user.name, class: "w-20 h-20 rounded-full" %>
+      <%= image_tag @user.avatar_thumbnail, alt: @user.name, class: "w-20 h-20 rounded-full" %>
     <% else %>
       <%= image_tag @user.google_image_url, alt: @user.name, class: "w-20 h-20 rounded-full" %>
     <% end %>

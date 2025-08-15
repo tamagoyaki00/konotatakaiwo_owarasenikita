@@ -1,25 +1,25 @@
 <div class="container mx-auto p-4 overflow-y-auto">
-<div class="mt-15 flex items-center justify-center flex-col space-y-8">
-  <h2 class="text-xl"><%= t('.profile') %></h2>
+  <div class="mt-15 flex items-center justify-center flex-col space-y-8">
+    <h2 class="text-xl"><%= t('.profile') %></h2>
 
-  <%= turbo_frame_tag "user_profile_frame" do %>
-    <%= render "profile_display", user: @user %>
-  <% end %>
-</div>
+    <%= turbo_frame_tag "user_profile_frame" do %>
+      <%= render "profile_display", user: @user %>
+    <% end %>
 
-<h2 class="mt-15 text-2xl text-center"><%= t('.your_questions')%></h2>
-<% if @questions.any? %>
-  <div class="mt-8">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4 lg:gap-5 2xl:gap-6 justify-items-center">
-      <% @questions.each do |question| %>
-        <%= render "questions/question", question: question %>
-      <% end %>
+  <h2 class="mt-15 text-2xl text-center"><%= t('.your_questions')%></h2>
+  <% if @questions.any? %>
+    <div class="mt-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4 lg:gap-5 2xl:gap-6 justify-items-center">
+        <% @questions.each do |question| %>
+          <%= render "questions/question", question: question %>
+        <% end %>
+      </div>
     </div>
+  <% else %>
+    <div class="text-center space-y-8">
+      <p><%= t('.no_questions')%></p>
+      <%= link_to t('.post_new_question'), new_question_path, class: "button" %>
+    </div>
+  <% end %>
   </div>
-<% else %>
-  <div class="text-center">
-    <p><%= t('.no_questions')%></p>
-    <%= link_to t('.post_new_question'), new_question_path, class: "button" %>
-  </div>
-<% end %>
 </div>
