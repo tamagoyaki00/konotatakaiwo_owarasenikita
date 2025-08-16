@@ -27,6 +27,7 @@ ja:
         updated_at: 更新日
         name: "名前"
         google_image_url: プロフィール画像
+        avatar: プロフィール画像
     models:
       user:
         one: ユーザー

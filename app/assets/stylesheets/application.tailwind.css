@@ -2,6 +2,42 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
+@plugin "daisyui/theme" {
+  name: "konotatakaiwo_owarasenikita";
+  default: true;
+  prefersdark: true;
+  color-scheme: "light";
+  --color-base-100: oklch(98% 0.001 106.423);
+  --color-base-200: oklch(97% 0.001 106.424);
+  --color-base-300: oklch(92% 0.003 48.717);
+  --color-base-content: oklch(21% 0.006 56.043);
+  --color-primary: #e9d19bcc;
+  --color-primary-content: oklch(97% 0.013 236.62);
+  --color-secondary: #f8f8f8;
+  --color-secondary-content: oklch(98% 0.026 102.212);
+  --color-accent: #ff6f00;
+  --color-accent-content: oklch(98% 0.018 155.826);
+  --color-neutral: oklch(26% 0.007 34.298);
+  --color-neutral-content: oklch(98% 0.001 106.423);
+  --color-info: oklch(78% 0.154 211.53);
+  --color-info-content: oklch(30% 0.056 229.695);
+  --color-success: oklch(79% 0.209 151.711);
+  --color-success-content: oklch(26% 0.065 152.934);
+  --color-warning: oklch(82% 0.189 84.429);
+  --color-warning-content: oklch(27% 0.077 45.635);
+  --color-error: oklch(71% 0.194 13.428);
+  --color-error-content: oklch(27% 0.105 12.094);
+  --radius-selector: 0rem;
+  --radius-field: 0.5rem;
+  --radius-box: 1rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 1;
+}
+
+
 @theme {
   /* フォント */
   --font-zen: "Zen Antique", sans-serif;

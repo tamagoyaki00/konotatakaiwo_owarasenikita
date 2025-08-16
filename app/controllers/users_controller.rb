@@ -11,7 +11,7 @@ end
 
   def update
     if @user.update(user_params)
-      flash.now[:notice] = "名前を変更しました"
+      flash.now[:notice] = "プロフィールを変更しました"
     else
       render :edit, status: :unprocessable_entity
     end
@@ -31,6 +31,6 @@ end
   end
 
   def user_params
-    params.require(:user).permit(:name)
+    params.require(:user).permit(:name, :avatar, avatar: [])
   end
 end

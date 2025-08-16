@@ -13,9 +13,10 @@ ja:
   users:
     form:
       edit_name_label: 変更したいユーザー名を入力
+      edit_avatar_label: プロフィール画像を選択
       cancel: キャンセル
     profile_display:
-      edit_name: ユーザー名を編集
+      edit_profile: プロフィールを編集
     show:
       profile: プロフィール
       your_questions: あなたの投稿したお題

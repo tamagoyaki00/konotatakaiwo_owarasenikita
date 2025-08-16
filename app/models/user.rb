@@ -7,10 +7,14 @@ class User < ApplicationRecord
   has_many :opinions, dependent: :destroy
   has_many :opinion_reactions, dependent: :destroy
   has_many :liked_opinions, through: :opinion_reactions, source: :opinion
+  has_one_attached :avatar
 
   validates :name, presence: true
   validates :email, presence: true, uniqueness: true
   validates :uid, uniqueness: { scope: :provider }
+  validate :validate_avatar_format
+  validate :avatar_size
+
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
@@ -49,5 +53,23 @@ class User < ApplicationRecord
 
   def own?(object)
     id == object&.user_id
+  end
+
+  def avatar_thumbnail
+    self.avatar.variant(resize_to_fill: [ 80, 80 ]).processed
+  end
+
+  private
+
+  def validate_avatar_format
+    if avatar.attached? && !avatar.content_type.in?(%w[image/jpeg image/png image/gif])
+      errors.add(:image, "：ファイル形式が、JPEG, PNG, GIF以外になってます。ファイル形式をご確認ください")
+    end
+  end
+
+  def avatar_size
+    if avatar.attached? && avatar.byte_size > 5.megabytes
+      errors.add(:avatar, "のファイルサイズは5MB以内にしてください")
+    end
   end
 end

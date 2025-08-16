@@ -1,13 +1,24 @@
 <%= form_with model: user do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
+  <div class="field flex flex-col items-center space-y-2">
+    <%# 画像表示部分 %>
+    <% if @user.avatar.attached? %>
+      <%= image_tag @user.avatar_thumbnail, alt: @user.name, class: "w-20 h-20 rounded-full" %>
+    <% else %>
+      <%= image_tag @user.google_image_url, alt: @user.name, class: "w-20 h-20 rounded-full" %>
+    <% end %>
 
-  <div class="field flex flex-col items-center">
-    <%= f.label :name, t('.edit_name_label'), class: "mb-2" %>
+    <div class="mt-2">
+      <%= f.file_field :avatar, class:"file-input" %>
+    </div>
+  
+
+    <%= f.label :name, t('.edit_name_label'), class: "mt-2" %>
     <%= f.text_field :name, class: "border border-orange p-2 rounded-md w-48" %>
-  </div>
 
-  <div class="flex space-x-5 mt-5">
-    <%= f.submit class: "button" %>
-    <%= link_to t('.cancel'), user_path(user), data: { turbo_frame: "user_profile_frame" }, class: "cancel-button" %>
+    <div class="flex space-x-5 mt-5">
+      <%= f.submit class: "button" %>
+      <%= link_to t('.cancel'), user_path(user), data: { turbo_frame: "user_profile_frame" }, class: "cancel-button" %>
+    </div>
   </div>
 <% end %>
