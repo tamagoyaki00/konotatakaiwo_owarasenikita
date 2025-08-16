@@ -42,24 +42,40 @@ RSpec.describe "Users", type: :system do
       before { login(user) }
       it '名前を正常に編集できる' do
         visit user_path(user)
-        click_link 'ユーザー名を編集'
+        click_link 'プロフィールを編集'
 
         fill_in 'user_name', with: '新しい名前'
         click_button '更新'
 
-        expect(page).to have_content('名前を変更しました')
+        expect(page).to have_content('プロフィールを変更しました')
         expect(page).to have_content('新しい名前')
         expect(current_path).to eq user_path(user)
       end
 
       it '空の名前では編集できない' do
         visit user_path(user)
-        click_link 'ユーザー名を編集'
+        click_link 'プロフィールを編集'
         fill_in 'user_name', with: ''
         click_button '更新'
 
         expect(page).to have_content("名前を入力してください")
         expect(current_path).to eq user_path(user)
+      end
+    end
+
+    describe 'アバター画像' do
+      before { login(user) }
+
+      it 'アバター画像を正常に編集できる' do
+        visit user_path(user)
+        click_link 'プロフィールを編集'
+
+        attach_file 'user_avatar', Rails.root.join('spec/fixtures/files/test.jpg')
+        click_button '更新'
+
+        expect(page).to have_content('プロフィールを変更しました')
+        expect(current_path).to eq user_path(user)
+        expect(page).to have_selector("img[src*='test.jpg']")
       end
     end
 
