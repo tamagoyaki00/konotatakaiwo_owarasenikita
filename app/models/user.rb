@@ -56,20 +56,20 @@ class User < ApplicationRecord
   end
 
   def avatar_thumbnail
-    return self.avatar.variant(resize_to_fill: [80, 80]).processed
+    self.avatar.variant(resize_to_fill: [ 80, 80 ]).processed
   end
 
   private
 
   def validate_avatar_format
     if avatar.attached? && !avatar.content_type.in?(%w[image/jpeg image/png image/gif])
-      errors.add(:image, '：ファイル形式が、JPEG, PNG, GIF以外になってます。ファイル形式をご確認ください。')
+      errors.add(:image, "：ファイル形式が、JPEG, PNG, GIF以外になってます。ファイル形式をご確認ください。")
     end
   end
 
   def avatar_size
     if avatar.attached? && avatar.byte_size > 5.megabytes
-      errors.add(:avatar, 'のファイルサイズは5MB以内にしてください')
+      errors.add(:avatar, "のファイルサイズは5MB以内にしてください")
     end
   end
 end

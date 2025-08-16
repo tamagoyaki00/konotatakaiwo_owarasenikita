@@ -4,8 +4,8 @@
 
 @plugin "daisyui/theme" {
   name: "konotatakaiwo_owarasenikita";
-  default: false;
-  prefersdark: false;
+  default: true;
+  prefersdark: true;
   color-scheme: "light";
   --color-base-100: oklch(98% 0.001 106.423);
   --color-base-200: oklch(97% 0.001 106.424);
@@ -36,6 +36,7 @@
   --depth: 1;
   --noise: 1;
 }
+
 
 @theme {
   /* フォント */
