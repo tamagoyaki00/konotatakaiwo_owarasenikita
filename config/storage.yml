@@ -41,3 +41,5 @@ amazon:
   bucket: konotatakaiwo-owarasenikita
   endpoint: <%= ENV['S3_ENDPOINT'] %>
   force_path_style: true
+  request_checksum_calculation: "when_required"
+  response_checksum_validation: "when_required"
