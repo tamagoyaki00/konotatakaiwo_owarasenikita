@@ -8,7 +8,7 @@
   
   <%= form_with model: opinion do |f| %>
     <div class="mt-2">
-      <%= f.text_area :content, class: "textarea textarea-bordered w-full" %>
+      <%= f.text_area :content, class: "textarea textarea-bordered w-full dark:bg-white" %>
     </div>
       <% opinion.errors.full_messages_for(:content).each do |message| %>
         <p class="text-red-500 text-xs italic mt-1"><%= message %></p>
