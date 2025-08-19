@@ -4,15 +4,15 @@ class UsersController < ApplicationController
 
 def show
   @questions = case params[:sort_by]
-               when 'most_voted'
-                 @user.questions.most_voted
-               when 'most_opinions'
-                 @user.questions.most_opinions
-               when 'oldest'
-                 @user.questions.oldest
-               else
-                 @user.questions.order(created_at: :desc)
-               end
+  when "most_voted"
+                 @user.questions.most_voted.includes(:user)
+  when "most_opinions"
+                 @user.questions.most_opinions.includes(:user)
+  when "oldest"
+                 @user.questions.oldest.includes(:user)
+  else
+                 @user.questions.order(created_at: :desc).includes(:user)
+  end
 end
 
   def edit

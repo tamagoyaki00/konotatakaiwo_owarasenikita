@@ -9,11 +9,11 @@ class Question < ApplicationRecord
   validates :user_id, presence: true
 
   scope :most_voted, -> {
-    left_joins(:votes).group('questions.id').order('COUNT(votes.id) DESC')
+    left_joins(:votes).group("questions.id").order("COUNT(votes.id) DESC")
   }
 
   scope :most_opinions, -> {
-    left_joins(:opinions).group('questions.id').order('COUNT(opinions.id) DESC')
+    left_joins(:opinions).group("questions.id").order("COUNT(opinions.id) DESC")
   }
 
   scope :oldest, -> { order(created_at: :asc) }
@@ -29,5 +29,4 @@ class Question < ApplicationRecord
   def has_responses?
     votes.exists? || opinions.exists?
   end
-
 end

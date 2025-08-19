@@ -5,15 +5,15 @@ class QuestionsController < ApplicationController
 
   def index
     @questions = case params[:sort_by]
-                 when 'most_voted'
-                   Question.most_voted
-                 when 'most_opinions'
-                   Question.most_opinions
-                 when 'oldest'
-                   Question.oldest
-                 else
-                   Question.order(created_at: :desc)
-                 end
+    when "most_voted"
+                   Question.most_voted.includes(:user)
+    when "most_opinions"
+                   Question.most_opinions.includes(:user)
+    when "oldest"
+                   Question.oldest.includes(:user)
+    else
+                   Question.order(created_at: :desc).includes(:user)
+    end
   end
 
   def show
