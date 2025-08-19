@@ -9,6 +9,18 @@
   <h2 class="mt-15 text-2xl text-center"><%= t('.your_questions')%></h2>
   <% if @questions.any? %>
     <div class="mt-8">
+      <%= form_with url: user_path, method: :get, local: true do %>
+        <div class= "selectbox mb-4">
+          <%= select_tag :sort_by, options_for_select([
+            ['新着順', 'latest'],
+            ['古い順', 'oldest'],
+            ['投票数が多い順', 'most_voted'],
+            ['意見数が多い順', 'most_opinions']
+          ], params[:sort_by]),
+          class: "selectbox-select",
+          onchange: 'this.form.submit();' %>
+        </div>
+      <% end %>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4 lg:gap-5 2xl:gap-6 justify-items-center">
         <% @questions.each do |question| %>
           <%= render "questions/question", question: question %>
