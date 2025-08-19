@@ -76,6 +76,7 @@
   @apply shadow-xl -translate-y-0.5;
 }
 
+/* それなボタン */
 .reaction-button {
   position: relative;
   display: inline-flex;
@@ -163,6 +164,60 @@
 
 .opinions-container::-webkit-scrollbar-thumb:hover {
   background: #a0aec0;
+}
+
+/* セレクトボックス */
+.selectbox {
+    position: relative;
+    display: inline-block;
+}
+
+.selectbox::before,
+.selectbox::after {
+    position: absolute;
+    content: '';
+    pointer-events: none;
+}
+
+.selectbox::before {
+    right: 0;
+    top: 0;
+    width: 2.8em;
+    height: 100%;
+    border-radius: 0 3px 3px 0;
+    background-color: #55a0e6;
+    content: '';
+}
+
+.selectbox::after {
+    position: absolute;
+    top: 50%;
+    right: 1.4em;
+    transform: translate(50%, -50%) rotate(45deg);
+    width: 6px;
+    height: 6px;
+    border-bottom: 3px solid #fff;
+    border-right: 3px solid #fff;
+    content: '';
+}
+
+.selectbox select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    
+    min-width: 230px;
+    height: 2.8em;
+    padding: .4em 3.6em .4em .8em;
+    border: 2px solid #55a0e6;
+    border-radius: 3px;
+    color: #413e3e;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.selectbox select:focus {
+    outline: 0.5px solid #55a0e6;
 }
 
 /* Google Sign-In Button Component */

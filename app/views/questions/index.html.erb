@@ -2,24 +2,23 @@
 <div class="h-full">
   <div class="container mx-auto p-4">
     <div class="questions-container">
-      <%= turbo_frame_tag "questions-page-#{@questions.current_page}" do %>
-        <div class="mb-8">
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4 lg:gap-5 2xl:gap-6 justify-items-center">
-            <%= render @questions %>
-          </div>
+      <%= form_with url: questions_path, method: :get, local: true do %>
+        <div class= "selectbox mb-4">
+          <%= select_tag :sort_by, options_for_select([
+            ['新着順', 'latest'],
+            ['古い順', 'oldest'],
+            ['投票数が多い順', 'most_voted'],
+            ['意見数が多い順', 'most_opinions']
+          ], params[:sort_by]),
+          class: "selectbox-select",
+          onchange: 'this.form.submit();' %>
         </div>
-
-        <% if @questions.next_page %>
-          <%= turbo_frame_tag "questions-page-#{@questions.next_page}",
-              loading: :lazy,
-              src: questions_path(page: @questions.next_page) do %>
-            <div class="mb-8">
-              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4 lg:gap-5 2xl:gap-6 justify-items-center">
-              </div>
-            </div>
-          <% end %>
-        <% end %>
       <% end %>
+      <div class="mb-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4 lg:gap-5 2xl:gap-6 justify-items-center">
+          <%= render @questions %>
+        </div>
+      </div>
     </div>
   </div>
 </div>

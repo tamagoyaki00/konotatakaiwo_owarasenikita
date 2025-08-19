@@ -1,6 +1,10 @@
 <%= turbo_frame_tag "opinion_#{opinion.id}", class: "block mb-6 pb-4 border-b border-gray-200" do %>
   <div class="flex items-center mb-2">
-    <img src="<%= opinion.user.google_image_url %>" alt="<%= opinion.user.name %>" class="w-6 h-6 rounded-full">
+    <% if opinion.user.avatar.attached? %>
+      <%= image_tag opinion.user.avatar_thumbnail, alt: opinion.user.name, class: "w-6 h-6 rounded-full" %>
+    <% else %>
+      <img src="<%= opinion.user.google_image_url %>" alt="<%= opinion.user.name %>" class="w-6 h-6 rounded-full">
+    <% end %>
     <div class="ml-2 font-semibold text-gray-800">
       <%= opinion.user.name %>
     </div>
