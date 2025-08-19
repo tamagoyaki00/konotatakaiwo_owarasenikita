@@ -165,6 +165,61 @@
   background: #a0aec0;
 }
 
+.selectbox {
+    position: relative;
+    display: inline-block;
+}
+
+.selectbox::before,
+.selectbox::after {
+    position: absolute;
+    content: '';
+    pointer-events: none;
+}
+
+.selectbox::before {
+    right: 0;
+    top: 0;
+    width: 2.8em;
+    height: 100%;
+    border-radius: 0 3px 3px 0;
+    background-color: #ff6f00;
+    content: '';
+}
+
+/* プルダウンの右側にある白い矢印部分 */
+.selectbox::after {
+    position: absolute;
+    top: 50%;
+    right: 1.4em;
+    transform: translate(50%, -50%) rotate(45deg);
+    width: 6px;
+    height: 6px;
+    border-bottom: 3px solid #fff;
+    border-right: 3px solid #fff;
+    content: '';
+}
+
+
+.selectbox select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    
+    /* 外観の調整 */
+    min-width: 230px;
+    height: 2.8em;
+    padding: .4em 3.6em .4em .8em;
+    border: 2px solid #ff6f00;
+    border-radius: 3px;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.selectbox select:focus {
+    outline: 1px solid #ff6f00;
+}
+
 /* Google Sign-In Button Component */
 .gsi-material-button {
   @apply select-none appearance-none bg-white border border-gray-700 rounded-full box-border text-gray-800 cursor-pointer font-sans text-sm h-10 tracking-wider outline-none overflow-hidden px-3 relative text-center transition-all duration-200 ease-in-out align-middle whitespace-nowrap w-auto max-w-lg min-w-0;
