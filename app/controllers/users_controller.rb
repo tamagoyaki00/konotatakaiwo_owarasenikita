@@ -3,7 +3,16 @@ class UsersController < ApplicationController
   before_action :correct_user, only: %i[ show edit update]
 
 def show
-  @questions = @user.questions.includes(:user).order(created_at: :desc)
+  @questions = case params[:sort_by]
+               when 'most_voted'
+                 @user.questions.most_voted
+               when 'most_opinions'
+                 @user.questions.most_opinions
+               when 'oldest'
+                 @user.questions.oldest
+               else
+                 @user.questions.order(created_at: :desc)
+               end
 end
 
   def edit
