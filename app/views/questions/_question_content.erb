@@ -5,10 +5,13 @@
     <div id="voting-section">
       <%= render 'options_with_results', question: question, current_user: current_user %>
     </div>
-
     <div class="flex items-center space-x-3 mt-8 pt-4 border-t border-gray-200">
-      <img src="<%= question.user.google_image_url %>" alt="<%= question.user.name %>" class="w-10 h-10 rounded-full">
-      <span><%= t('.creater')%>: <%= @question.user.name %></span>
+      <% if @question.user.avatar.attached? %>
+        <%= image_tag @question.user.avatar_thumbnail, alt: @question.user.name, class: "w-10 h-10 rounded-full" %>
+      <% else %>
+        <img src="<%= @question.user.google_image_url %>" alt="<%= @question.user.name %>" class="w-10 h-10 rounded-full">
+      <% end %>
+      <span><%= t('.creator')%>: <%= @question.user.name %></span>
 
       <div class="ml-auto flex items-center space-x-2">
         <% if question.user == current_user %>

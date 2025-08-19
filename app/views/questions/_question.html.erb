@@ -2,8 +2,12 @@
   <div class="bg-white border border-orange shadow-md w-80 h-50 p-6 mt-6 rounded-lg card-animated space-y-4">
     <h2 class="text-xl font-bold"><%= question.title %></h2>
     <div class="flex items-center space-x-2">
-      <img src="<%= question.user.google_image_url %>" alt="<%= question.user.name %>" class="w-8 h-8 rounded-full">
-      <span><%= t('.creater')%>: <%= question.user.name %></span>
+      <% if question.user.avatar.attached? %>
+        <%= image_tag question.user.avatar_thumbnail, alt: question.user.name, class: "w-8 h-8 rounded-full" %>
+      <% else %>
+        <img src="<%= question.user.google_image_url %>" alt="<%= question.user.name %>" class="w-8 h-8 rounded-full">
+      <% end %>
+      <span><%= t('.creator')%>: <%= question.user.name %></span>
     </div>
     <div class="flex items-center space-x-2">
       <i class="fa-regular fa-face-laugh-beam"></i>
