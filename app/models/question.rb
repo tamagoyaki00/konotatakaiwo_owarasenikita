@@ -13,7 +13,7 @@ class Question < ApplicationRecord
   }
 
   scope :most_opinions, -> {
-    left_joins(:opinions.)group('questions.id').order('COUNT(opinions.id)DESC')
+    left_joins(:opinions).group('questions.id').order('COUNT(opinions.id) DESC')
   }
 
   scope :oldest, -> { order(created_at: :asc) }
