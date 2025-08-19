@@ -76,6 +76,7 @@
   @apply shadow-xl -translate-y-0.5;
 }
 
+/* それなボタン */
 .reaction-button {
   position: relative;
   display: inline-flex;
@@ -165,6 +166,7 @@
   background: #a0aec0;
 }
 
+/* セレクトボックス */
 .selectbox {
     position: relative;
     display: inline-block;
@@ -183,11 +185,10 @@
     width: 2.8em;
     height: 100%;
     border-radius: 0 3px 3px 0;
-    background-color: #ff6f00;
+    background-color: #55a0e6;
     content: '';
 }
 
-/* プルダウンの右側にある白い矢印部分 */
 .selectbox::after {
     position: absolute;
     top: 50%;
@@ -200,24 +201,23 @@
     content: '';
 }
 
-
 .selectbox select {
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
     
-    /* 外観の調整 */
     min-width: 230px;
     height: 2.8em;
     padding: .4em 3.6em .4em .8em;
-    border: 2px solid #ff6f00;
+    border: 2px solid #55a0e6;
     border-radius: 3px;
+    color: #413e3e;
     font-size: 1em;
     cursor: pointer;
 }
 
 .selectbox select:focus {
-    outline: 1px solid #ff6f00;
+    outline: 0.5px solid #55a0e6;
 }
 
 /* Google Sign-In Button Component */
