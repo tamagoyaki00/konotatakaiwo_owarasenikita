@@ -4,7 +4,16 @@ class QuestionsController < ApplicationController
   before_action :check_user, only: %i[ edit update destroy ]
 
   def index
-    @questions = Question.all.includes(:user).order(created_at: :desc).page(params[:page]).per(12)
+    @questions = case params[:sort_by]
+                 when 'most_voted'
+                   Question.most_voted
+                 when 'most_opinions'
+                   Question.most_opinions
+                 when 'oldest'
+                   Question.oldest
+                 else
+                   Question.order(created_at: :desc)
+                 end
   end
 
   def show
